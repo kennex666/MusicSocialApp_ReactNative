@@ -112,6 +112,9 @@ Hãy xoá nội dung của return và thay thế bằng màn hình bạn đang v
 
 > [!WARNING]
 > Đừng quên import các component cần thiết từ `app/components` và các hàm từ `app/utils`
+
 > Viết những component nào không sử dụng nhiều bằng cách tạo thêm 1 folder trong `app/screens/` và viết component đó trong folder đó
+
 > Component nào dùng nhiều thì viết tại `app/components`
+
 > Đặt tên file theo chuẩn `PascalCase`
