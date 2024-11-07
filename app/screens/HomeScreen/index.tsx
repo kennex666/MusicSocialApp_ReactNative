@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import CText from "../../components/CText";
 import { FontSizeConstants } from "../../constants/font-size";
+import { vw } from "../../utils/ViewpointEmulator";
 
 export default function HomeScreen(): JSX.Element {
   return (
@@ -16,4 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  test:{
+    width: vw(100)
+  }
 });

@@ -11,7 +11,6 @@ export const isPortrait = (height>width);
 
 // Optionally, create a hook to automatically update dimensions
 import { useWindowDimensions } from 'react-native';
-import { isPort } from 'validator';
 
 export const useViewportDimensions = () => {
   const { width, height } = useWindowDimensions();
