@@ -1,8 +1,9 @@
 
-export const ScreenName = {
+export const SCREEN_NAME = {
     HOME: 'Home',
     PROFILE: 'Profile',
     SETTINGS: 'Settings',
     LOGIN: 'Login',
-    REGISTER: 'Register'
+    REGISTER: 'Register',
+    TESTING: 'Testing',
 }
