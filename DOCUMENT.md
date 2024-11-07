@@ -73,9 +73,15 @@ Dùng để định dạng thời gian
 #### Array(app/utils)
     `mergeArrays`: Hợp nhất 2 mảng dựa vào id, truyền vào (array1, array2, id)
 
-### Constants viết sẵn
+### Constants/Component viết sẵn
 
-Gồm màu sắc, font size, screen (dùng thay cho việc truyền tên màn hình trong navigation)
+`app/constants` Gồm màu sắc, font size, screen (dùng thay cho việc truyền tên màn hình trong navigation)
+
+`CText`: Text component này sẽ có thuộc tính size để set font size, mặc định là `FontSizeConstants.nm`
+
+Sử dụng: `<CText size={FontSizeConstants.**FONTSIZE**)}>Text</CText>` với **FONTSIZE** là một trong các giá trị trong `app/constants/FontSizeConstants`
+
+Component này ngoài việc set font size, còn có thể set thêm các thuộc tính khác của Text, dùng để tạo font chữ mặc định cho dự án khi cần tuỳ chỉnh.
 
 ### Hướng dẫn về viết màn hình mới
 

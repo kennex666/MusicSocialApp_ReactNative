@@ -1,4 +1,5 @@
 import { Text } from 'react-native';
+import { FontSizeConstants } from '../constants/font-size';
 
 /**
   * @author Kennex666
@@ -8,7 +9,5 @@ import { Text } from 'react-native';
   */
 export default function CText (props: any): JSX.Element {
   const { style, size } = props;
-  if (size)
-    return <Text style={[{fontSize: size }, style ?? {}]} {...props} />;
-  return <Text style={[{}, style ?? {}]} {...props} />;
+  return <Text style={[{fontSize: size ?? FontSizeConstants.nm }, style ?? {}]} {...props} />;
 };
