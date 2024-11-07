@@ -1,10 +1,18 @@
-# Hướng dẫn làm việc với dự án Music App - React Native
+# Hướng dẫn làm việc với dự án Music App - React Native 
+
+## Lịch sử phiên bản
+
+Phiên bản tài liệu hiện hành: 1.0.2
+
+### Chỉnh sửa gần đây: 
+
+**Hướng dẫn về viết màn hình mới**: Tại bước 4 bị sai.
 
 ## Mục đích
 
 Tài liệu này nhằm hướng dẫn thành viên trong nhóm làm việc trong dự án
 
-## Các hướng dẫn
+## Các hướng dẫn về dự án
 
 ### Cấu trúc dự án
 
