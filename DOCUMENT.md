@@ -51,20 +51,20 @@ Ví dụ:
     Để một component có chiều rộng bằng 50% trên mọi màn hình, ta sẽ viết như sau: `width: vw(50)`
 
 #### Scale (app/utils)
-    scale, verticalScale, moderateScale, scaledFontSize
+scale, verticalScale, moderateScale, scaledFontSize
 
-    `scale(size)`: Dùng cho chiều rộng, thay cho việc set cứng giá trị
+`scale(size)`: Dùng cho chiều rộng, thay cho việc set cứng giá trị
 
-    Ví dụ: 
+Ví dụ: 
         
-        Để component luôn hiển thị chính xác, thay vì viết `width: 100`, ta sẽ viết thành `width: scale(100)`
+    Để component luôn hiển thị chính xác, thay vì viết `width: 100`, ta sẽ viết thành `width: scale(100)`
 
-    `verticalScale(size)`: Dùng cho chiều cao, thay cho việc set cứng giá trị tương tự như chiều rộng
+`verticalScale(size)`: Dùng cho chiều cao, thay cho việc set cứng giá trị tương tự như chiều rộng
 
     
-    **[KHÔNG KHUYẾN NGHỊ SỬ DỤNG TRỪ TH CẦN THIẾT]** 
+**[KHÔNG KHUYẾN NGHỊ SỬ DỤNG TRỪ TH CẦN THIẾT]** 
     
-    `scaledFontSize(size)`: Dùng cho font-size, thay cho việc set cứng giá trị, tuy nhiên nên sử dụng const `FontSizeConstants` trong `app/constants` để đồng nhất font size.
+`scaledFontSize(size)`: Dùng cho font-size, thay cho việc set cứng giá trị, tuy nhiên nên sử dụng const `FontSizeConstants` trong `app/constants` để đồng nhất font size.
 
 #### DateTimeFormater (app/utils)
 
@@ -108,7 +108,7 @@ Component này ngoài việc set font size, còn có thể set thêm các thuộ
 
 Hãy xoá nội dung của return và thay thế bằng màn hình bạn đang viết.
 
-4. Viết code ở `TestingScreen/index.tsx`
+4. Viết code ở `HomeScreen/index.tsx`
 
 > [!WARNING]
 > Đừng quên import các component cần thiết từ `app/components` và các hàm từ `app/utils`
