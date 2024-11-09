@@ -5,6 +5,7 @@ import FormTextInput from "../components/FormTextInput";
 import NextButton from "../components/NextButton";
 import ChooseArtistButton from "../components/ChooseArtistButton";
 import { ScrollView, View } from "react-native";
+import SearchTextInput from "../components/SearchTextInput";
 
 export default function TestingScreen() {
     return (
@@ -50,6 +51,9 @@ export default function TestingScreen() {
                     image={require("../../assets/adaptive-icon.png")}
                 />
             </View>
+            <SearchTextInput 
+                image={require("../../assets/favicon.png")}
+            />
         </ScrollView>
     );
 }
