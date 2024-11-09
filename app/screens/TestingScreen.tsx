@@ -15,7 +15,15 @@ export default function TestingScreen() {
             <SignUpButton />
             <ContinueLogInButton 
                 text="Continue with Google" 
-                image={require("../../assets/adaptive-icon.png")}
+                image={require("../../assets/favicon.png")}
+            />
+            <ContinueLogInButton 
+                text="Continue with Facebook" 
+                image={require("../../assets/favicon.png")}
+            />
+            <ContinueLogInButton 
+                text="Continue with Apple" 
+                image={require("../../assets/favicon.png")}
             />
         </SafeAreaView>
     )
