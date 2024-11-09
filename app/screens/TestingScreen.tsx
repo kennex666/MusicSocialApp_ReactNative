@@ -1,6 +1,7 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import SignUpButton from "../components/SignUpButton";
 import ContinueLogInButton from "../components/ContinueLogInButton";
+import FormTextInput from "../components/FormTextInput";
 
 export default function TestingScreen() {
     return (
@@ -25,6 +26,7 @@ export default function TestingScreen() {
                 text="Continue with Apple" 
                 image={require("../../assets/favicon.png")}
             />
+            <FormTextInput />
         </SafeAreaView>
     )
 }
