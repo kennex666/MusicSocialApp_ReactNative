@@ -45,9 +45,11 @@ export default function TestingScreen() {
             >
                 <ChooseArtistButton
                     image={require("../../assets/adaptive-icon.png")}
+                    size={100}
                 />
                 <ChooseArtistButton
                     image={require("../../assets/adaptive-icon.png")}
+                    size={200}
                 />
                 <ChooseArtistButton
                     image={require("../../assets/adaptive-icon.png")}
