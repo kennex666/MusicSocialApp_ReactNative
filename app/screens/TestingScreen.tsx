@@ -1,5 +1,6 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import SignUpButton from "../components/SignUpButton";
+import ContinueLogInButton from "../components/ContinueLogInButton";
 
 export default function TestingScreen() {
     return (
@@ -12,6 +13,10 @@ export default function TestingScreen() {
             paddingVertical: 10,
         }]}>
             <SignUpButton />
+            <ContinueLogInButton 
+                text="Continue with Google" 
+                image={require("../../assets/adaptive-icon.png")}
+            />
         </SafeAreaView>
     )
 }
