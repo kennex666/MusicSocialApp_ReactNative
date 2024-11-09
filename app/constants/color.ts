@@ -10,5 +10,9 @@ export const COLORS = {
     "tertiary": {
         "background": "#777777",
         "text": "#ffffff"
+    },
+    "spotify": {
+        "background": "#1ED760",
+        "text": "#000000"
     }
 }
