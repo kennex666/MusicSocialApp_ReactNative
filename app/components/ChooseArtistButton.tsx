@@ -8,15 +8,16 @@ export default function ChooseArtistButton(props: any): JSX.Element {
 
     return (
         <View style={styles.view}>
-            <TouchableOpacity 
+            <TouchableOpacity
                 style={[
                     styles.button,
-                    { 
+                    {
                         width: size ?? vw(30),
                         borderRadius: size ? size / 2 : vw(30) / 2,
                     },
-                ]} 
-                onPress={onPress}>
+                ]}
+                onPress={onPress}
+            >
                 <Image
                     source={image}
                     style={[
