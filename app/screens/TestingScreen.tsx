@@ -7,6 +7,7 @@ import ChooseArtistButton from "../components/ChooseArtistButton";
 import { ScrollView, View } from "react-native";
 import SearchTextInput from "../components/SearchTextInput";
 import { vh } from "../utils/ViewpointEmulator";
+import ChoosePodcastButton from "../components/ChoosePodcastButton";
 
 export default function TestingScreen() {
     return (
@@ -55,6 +56,23 @@ export default function TestingScreen() {
             <SearchTextInput 
                 image={require("../../assets/favicon.png")}
             />
+            <View
+                style={{
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    width: "100%",
+                }}
+            >
+                <ChoosePodcastButton
+                    image={require("../../assets/adaptive-icon.png")}
+                />
+                <ChoosePodcastButton
+                    image={require("../../assets/adaptive-icon.png")}
+                />
+                <ChoosePodcastButton
+                    image={require("../../assets/adaptive-icon.png")}
+                />
+            </View>
         </ScrollView>
     );
 }
