@@ -8,12 +8,12 @@ import { ScrollView, View } from "react-native";
 import SearchTextInput from "../components/SearchTextInput";
 import { vh } from "../utils/ViewpointEmulator";
 import ChoosePodcastButton from "../components/ChoosePodcastButton";
+import SearchResultButton from "../components/SearchResultButton";
 
 export default function TestingScreen() {
     return (
         <ScrollView
             contentContainerStyle={{
-                flex: 1,
                 alignItems: "center",
                 justifyContent: "flex-start",
                 backgroundColor: "#000000",
@@ -53,9 +53,7 @@ export default function TestingScreen() {
                     image={require("../../assets/adaptive-icon.png")}
                 />
             </View>
-            <SearchTextInput 
-                image={require("../../assets/favicon.png")}
-            />
+            <SearchTextInput image={require("../../assets/favicon.png")} />
             <View
                 style={{
                     flexDirection: "row",
@@ -71,6 +69,23 @@ export default function TestingScreen() {
                 />
                 <ChoosePodcastButton
                     image={require("../../assets/adaptive-icon.png")}
+                />
+            </View>
+            <View>
+                <SearchResultButton
+                    image={require("../../assets/adaptive-icon.png")}
+                    title="FKA Twigs"
+                    subtitle="Artist"
+                />
+                <SearchResultButton
+                    image={require("../../assets/adaptive-icon.png")}
+                    title="FKA Twigs"
+                    subtitle="Artist"
+                />
+                <SearchResultButton
+                    image={require("../../assets/adaptive-icon.png")}
+                    title="FKA Twigs"
+                    subtitle="Artist"
                 />
             </View>
         </ScrollView>
