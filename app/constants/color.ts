@@ -14,5 +14,9 @@ export const COLORS = {
     "spotify": {
         "background": "#1ED760",
         "text": "#000000"
-    }
+    },
+    "primaryReverse": {
+        "background": "#ffffff",
+        "text": "#121212"
+    },
 }
