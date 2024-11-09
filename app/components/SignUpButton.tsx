@@ -10,7 +10,7 @@ export default function SignUpButton(props: any): JSX.Element {
             <Text style={styles.text}>Sign up free</Text>
         </TouchableOpacity>
     );
-}
+};
 
 const styles = StyleSheet.create({
     button: {

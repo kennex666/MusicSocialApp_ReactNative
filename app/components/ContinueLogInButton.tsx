@@ -17,7 +17,7 @@ export default function ContinueLogInButton(props: any): JSX.Element {
             <Text style={styles.text}>{text}</Text>
         </TouchableOpacity>
     );
-}
+};
 
 const styles = StyleSheet.create({
     button: {

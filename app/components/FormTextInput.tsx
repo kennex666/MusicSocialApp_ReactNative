@@ -5,7 +5,7 @@ import { FontSizeConstants } from "../constants/font-size";
 
 export default function FormTextInput(props: any): JSX.Element {
     return <TextInput style={styles.textInput} />;
-}
+};
 
 const styles = StyleSheet.create({
     textInput: {

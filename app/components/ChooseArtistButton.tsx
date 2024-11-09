@@ -18,7 +18,7 @@ export default function ChooseArtistButton(props: any): JSX.Element {
             <Text style={styles.text}>Choose</Text>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     view: {

@@ -20,8 +20,8 @@ export default function SearchTextInput(props: any): JSX.Element {
                 placeholderTextColor={COLORS.primaryReverse.text}
             />
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     view: {

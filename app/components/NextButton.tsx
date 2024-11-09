@@ -10,7 +10,7 @@ export default function NextButton(props: any): JSX.Element {
             <Text style={styles.text}>Next</Text>
         </TouchableOpacity>
     );
-}
+};
 
 const styles = StyleSheet.create({
     button: {
