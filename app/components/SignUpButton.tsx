@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity } from "react-native";
-import { vw } from "../utils/ViewpointEmulator";
+import { vh, vw } from "../utils/ViewpointEmulator";
 import { COLORS } from "../constants/color";
 import { FontSizeConstants } from "../constants/font-size";
 
@@ -10,7 +10,7 @@ export default function SignUpButton(props: any): JSX.Element {
             style={[
                 {
                     width: vw(80),
-                    height: vw(10),
+                    height: vh(6),
                     backgroundColor: COLORS.spotify.background,
                     justifyContent: "center",
                     alignItems: "center",
