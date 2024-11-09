@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.tertiary.background,
     },
     text: {
-        color: COLORS.primary.background,
+        color: COLORS.primaryReverse.text,
         fontSize: FontSizeConstants.nm,
     },
 });

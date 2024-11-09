@@ -6,6 +6,7 @@ import NextButton from "../components/NextButton";
 import ChooseArtistButton from "../components/ChooseArtistButton";
 import { ScrollView, View } from "react-native";
 import SearchTextInput from "../components/SearchTextInput";
+import { vh } from "../utils/ViewpointEmulator";
 
 export default function TestingScreen() {
     return (
@@ -15,8 +16,8 @@ export default function TestingScreen() {
                 alignItems: "center",
                 justifyContent: "flex-start",
                 backgroundColor: "#000000",
-                gap: 20,
-                paddingVertical: 10,
+                gap: vh(2),
+                paddingVertical: vh(2),
             }}
         >
             <SignUpButton />
