@@ -15,10 +15,10 @@ export default function SignUpButton(props: any): JSX.Element {
 const styles = StyleSheet.create({
     button: {
         width: vw(80),
-        height: vh(5.3),
+        height: vh(6),
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 100,
+        borderRadius: vh(6) / 2,
         backgroundColor: COLORS.spotify.background,
     },
     text: {

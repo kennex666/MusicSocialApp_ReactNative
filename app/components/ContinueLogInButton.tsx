@@ -23,11 +23,11 @@ const styles = StyleSheet.create({
     button: {
         width: vw(80),
         height: vh(6),
-        flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
-        borderRadius: 100,
+        borderRadius: vh(6) / 2,
         backgroundColor: COLORS.primary.background,
+        flexDirection: "row",
         borderColor: COLORS.primary.text,
         borderWidth: 1,
     },
