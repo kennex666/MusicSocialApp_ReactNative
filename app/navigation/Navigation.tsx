@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { COLORS } from "../constants/color";
 import { SCREEN_NAME } from "../constants/screen";
 import HomeScreen from "../screens/HomeScreen";
-import TestingScreen from "../screens/TestingScreen";
+import TestingScreen from '../screens/TestingScreen';
 
 const Stack = createStackNavigator();
 
