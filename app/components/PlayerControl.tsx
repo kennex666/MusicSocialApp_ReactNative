@@ -9,7 +9,45 @@ import { verticalScale } from "../utils/Scale";
 export default function PlayerControlComponent() {
     return (
       <View style={styles.container}>
-        
+        <ImageButton
+          image={IMAGE_RESOURCE.player.shuffle}
+          size={ButtonImageSizeContants.md}
+          onPress={(active: boolean) => {
+            console.log("Play button pressed");
+          }}
+        />
+
+        <ImageButton
+          image={IMAGE_RESOURCE.player.skipForward}
+          size={ButtonImageSizeContants.md}
+          onPress={(active: boolean) => {
+            console.log("Play button pressed");
+          }}
+        />
+
+        <ImageButton
+          image={IMAGE_RESOURCE.player.play}
+          size={ButtonImageSizeContants.xxl}
+          onPress={(active: boolean) => {
+            console.log("Play button pressed");
+          }}
+        />
+
+        <ImageButton
+          image={IMAGE_RESOURCE.player.skipBack}
+          size={ButtonImageSizeContants.md}
+          onPress={(active: boolean) => {
+            console.log("Play button pressed");
+          }}
+        />
+
+        <ImageButton
+          image={IMAGE_RESOURCE.player.repeat}
+          size={ButtonImageSizeContants.md}
+          onPress={(active: boolean) => {
+            console.log("Play button pressed");
+          }}
+        />
       </View>
     );
 }
