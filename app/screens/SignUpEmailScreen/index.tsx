@@ -5,6 +5,8 @@ import { vh, vw } from "../../utils/ViewpointEmulator";
 import ImageButton from "../../components/ImageButton";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { ButtonImageSizeContants, FontSizeConstants } from "../../constants/font-size";
+import FormTextInput from "../../components/FormTextInput";
+import NextButton from "../../components/NextButton";
 
 export default function SignUpEmailScreen(): JSX.Element {
     return (
@@ -21,8 +23,12 @@ export default function SignUpEmailScreen(): JSX.Element {
                 </View>
                 <View style={styles.inputView}>
                     <Text style={styles.inputLabel}>What's your email?</Text>
+                    <FormTextInput />
+                    <Text style={styles.inputNote}>You will need to confirm this email later.</Text>
                 </View>
-                <View style={styles.buttonView}></View>
+                <View style={styles.buttonView}>
+                    <NextButton />
+                </View>
             </SafeAreaView>
         </SafeAreaProvider>
     );
@@ -34,11 +40,11 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignItems: "center",
         backgroundColor: COLORS.primary.background,
+        gap: vh(1),
     },
     titleView: {
         width: vw(85),
         height: vh(10),
-        paddingVertical: vh(2),
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
@@ -58,16 +64,22 @@ const styles = StyleSheet.create({
     inputView: {
         width: vw(85),
         height: vh(15),
-        paddingVertical: vh(2),
+        gap: vh(0.5),
     },
     inputLabel: {
         color: COLORS.primary.text,
-        fontSize: FontSizeConstants.xl,
+        fontSize: FontSizeConstants.lg,
+        fontWeight: "bold",
+    },
+    inputNote: {
+        color: COLORS.primary.text,
+        fontSize: FontSizeConstants.xs,
         fontWeight: "bold",
     },
     buttonView: {
         width: vw(85),
-        height: vh(10),
-        paddingVertical: vh(2),
+        height: vh(5),
+        justifyContent: "center",
+        alignItems: "center",
     },
 });
