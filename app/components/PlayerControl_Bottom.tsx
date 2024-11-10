@@ -43,6 +43,7 @@ export const PlayerControl_Bottom = () => {
                 image={IMAGE_RESOURCE.icon.connection.bluetooth}
                 size={ButtonImageSizeContants.sm}
                 firstState={true}
+                disabled={true}
               />
               <CText
                 style={styles.deviceConnectedText}
