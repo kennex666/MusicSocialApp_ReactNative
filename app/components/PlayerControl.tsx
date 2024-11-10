@@ -12,6 +12,7 @@ export default function PlayerControlComponent() {
         <ImageButton
           image={IMAGE_RESOURCE.player.shuffle}
           size={ButtonImageSizeContants.md}
+          isControllActive={false}
           onPress={(active: boolean) => {
             console.log("Play button pressed");
           }}
@@ -20,6 +21,7 @@ export default function PlayerControlComponent() {
         <ImageButton
           image={IMAGE_RESOURCE.player.skipForward}
           size={ButtonImageSizeContants.md}
+          isControllActive={false}
           onPress={(active: boolean) => {
             console.log("Play button pressed");
           }}
@@ -28,6 +30,7 @@ export default function PlayerControlComponent() {
         <ImageButton
           image={IMAGE_RESOURCE.player.play}
           size={ButtonImageSizeContants.xxl}
+          isControllActive={false}
           onPress={(active: boolean) => {
             console.log("Play button pressed");
           }}
@@ -36,6 +39,7 @@ export default function PlayerControlComponent() {
         <ImageButton
           image={IMAGE_RESOURCE.player.skipBack}
           size={ButtonImageSizeContants.md}
+          isControllActive={false}
           onPress={(active: boolean) => {
             console.log("Play button pressed");
           }}
@@ -44,6 +48,7 @@ export default function PlayerControlComponent() {
         <ImageButton
           image={IMAGE_RESOURCE.player.repeat}
           size={ButtonImageSizeContants.md}
+          isControllActive={false}
           onPress={(active: boolean) => {
             console.log("Play button pressed");
           }}
