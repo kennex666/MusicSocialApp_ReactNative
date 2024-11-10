@@ -47,10 +47,10 @@ export const PlayerControl_Bottom = () => {
               />
               <CText
                 style={styles.deviceConnectedText}
-                size={FontSizeConstants.nm}
-              >
-                Test
-              </CText>
+                size="nm"
+                value="WM-100"
+                color={COLORS.secondary.text}
+              />
             </View>
           </View>
 
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     color: COLORS.primary.text,
   },
   deviceConnectedText: {
-    color: COLORS.secondary.text,
     // make it always capitalize
     textTransform: "uppercase",
   },
