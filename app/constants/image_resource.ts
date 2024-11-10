@@ -37,4 +37,13 @@ export const IMAGE_RESOURCE = {
   static: {
     album: require("../../assets/images/static_resources/album-test.png"),
   },
+  start: {
+    background: require("../../assets/images/start/background.png"),
+    iconGoogle: require("../../assets/images/start/icon_google.png"),
+    iconFacebook: require("../../assets/images/start/icon_facebook.png"),
+    iconApple: require("../../assets/images/start/icon_apple.png"),
+  },
+  signUp: {
+    iconBack: require("../../assets/images/signUp/icon_back.png"),
+  }
 };

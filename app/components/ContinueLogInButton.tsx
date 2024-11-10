@@ -32,18 +32,18 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     imageView: {
-        width: "27.5%",
+        width: "25%",
         height: "100%",
         justifyContent: "center",
         alignItems: "flex-start",
     },
     image: {
-        height: "75%",
+        height: "50%",
         aspectRatio: 1,
         marginLeft: "15%",
     },
     text: {
-        width: "72.5%",
+        width: "75%",
         color: COLORS.primary.text,
         textAlign: "left",
         fontSize: FontSizeConstants.nm,
