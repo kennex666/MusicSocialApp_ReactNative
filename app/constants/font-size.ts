@@ -16,7 +16,8 @@ export const FontSizeConstants: any = {
 
 
 export const ButtonImageSizeContants = {
-  sm: verticalScale(8), // Small
+  xs: verticalScale(10), // Extra small
+  sm: verticalScale(15), // Small
   nm: verticalScale(18), // Normal (medium)
   md: verticalScale(20), // Medium
   lg: verticalScale(25), // Large

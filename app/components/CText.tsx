@@ -72,6 +72,9 @@ export default function Text({
         textAlign && { textAlign: textAlign },
         color && { color: color },
         underline && { textDecorationLine: "underline" },
+        // {
+        //   fontFamily: "AvenirNextLTPro",
+        // },
         style,
       ]}
       {...props}
