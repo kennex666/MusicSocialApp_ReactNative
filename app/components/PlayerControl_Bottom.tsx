@@ -8,6 +8,7 @@ import { COLORS } from "../constants/color"
 import TextTicker from "react-native-text-ticker"
 import Slider from "@react-native-community/slider"
 import { vw } from "../utils/ViewpointEmulator"
+import MusicSlider from "./MusicSlider"
 
 export const PlayerControl_Bottom = () => {
     return (
@@ -71,16 +72,7 @@ export const PlayerControl_Bottom = () => {
         </View>
 
         <View style={styles.secondaryContainer}>
-          <Slider
-            style={styles.slider}
-            minimumValue={0}
-            maximumValue={100}
-            value={50}
-            onSlidingComplete={() => {}}
-            minimumTrackTintColor="#fff"
-            maximumTrackTintColor="#777777"
-            thumbTintColor="#fff" // transparent
-          />
+          <MusicSlider style={styles.slider}/>
         </View>
       </View>
     );
