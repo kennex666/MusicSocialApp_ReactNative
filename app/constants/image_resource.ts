@@ -14,6 +14,21 @@ export const IMAGE_RESOURCE = {
       active: require("../../assets/images/player/btn-pause.png"),
       inactive: require("../../assets/images/player/btn-play.png"),
     },
+    playNocircle: {
+        active: require("../../assets/images/player/btn-pause-white-nocircle.png"),
+        inactive: require("../../assets/images/player/btn-play-white-nocircle.png"),
+    },
     pause: require("../../assets/images/player/icon.png"),
+  },
+  icon: {
+    connection: {
+      bluetooth: {
+        active: require("../../assets/images/connection/ico-bluetoothActive.png"),
+        inactive: require("../../assets/images/connection/ico-bluetoothInactive.png"),
+      },
+    },
+  },
+  static: {
+    album: require("../../assets/images/static_resources/album-test.png"),
   },
 };

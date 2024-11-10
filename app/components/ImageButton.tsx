@@ -8,6 +8,8 @@ import { TouchableOpacity, Image } from "react-native";
  * @param onPress - Function to be called when the button is pressed, it returns an object with active and setActive
  * @param isControllActive - Boolean to determine if the button control in onPress function
  * @param style - Style of the button if needed
+ * @param firstState - Initial state of the button
+ * @param disabled - Boolean to determine if the button is disabled
  * @returns 
  */
 export default function ImageButton({
@@ -16,12 +18,15 @@ export default function ImageButton({
   onPress = () => {},
   isControllActive = false,
   style = {},
+  firstState = false,
+  disabled = false,
 }: any): JSX.Element {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(firstState);
 
   return (
     <TouchableOpacity
       onPress={() => {
+        if (disabled) return;
         onPress && onPress({active, setActive});
         !isControllActive && setActive(!active);
       }}
