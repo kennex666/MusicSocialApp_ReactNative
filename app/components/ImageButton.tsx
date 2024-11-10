@@ -11,6 +11,15 @@ import { TouchableOpacity, Image } from "react-native";
  * @param firstState - Initial state of the button
  * @returns 
  */
+interface ImageButtonProps {
+  image: any;
+  size: number;
+  onPress?: (arg0: any) => void;
+  isControllActive?: boolean;
+  style?: any;
+  firstState?: boolean;
+}
+
 export default function ImageButton({
   image,
   size,
@@ -19,13 +28,13 @@ export default function ImageButton({
   style = {},
   firstState = false,
   ...props
-}: any): JSX.Element {
+}: ImageButtonProps): JSX.Element {
   const [active, setActive] = useState(firstState);
 
   return (
     <TouchableOpacity
       onPress={() => {
-        onPress && onPress({active, setActive});
+        onPress && onPress({ active, setActive });
         !isControllActive && setActive(!active);
       }}
       style={style}

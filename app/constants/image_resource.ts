@@ -20,6 +20,7 @@ export const IMAGE_RESOURCE = {
     },
     playing: require("../../assets/images/player/btn-more-green.png"),
     pause: require("../../assets/images/player/icon.png"),
+    speaker: require("../../assets/images/player/ico-speaker.png"),
   },
   details: {
     more: require("../../assets/images/player/btn-more.png"),
