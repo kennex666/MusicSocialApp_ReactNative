@@ -22,4 +22,7 @@ export const IMAGE_RESOURCE = {
     iconFacebook: require("../../assets/images/start/icon_facebook.png"),
     iconApple: require("../../assets/images/start/icon_apple.png"),
   },
+  signUp: {
+    iconBack: require("../../assets/images/signUp/icon_back.png"),
+  }
 };
