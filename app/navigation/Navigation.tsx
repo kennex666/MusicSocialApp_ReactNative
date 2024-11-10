@@ -4,14 +4,13 @@ import { COLORS } from "../constants/color";
 import { SCREEN_NAME } from "../constants/screen";
 import HomeScreen from "../screens/HomeScreen";
 import TestingScreen from '../screens/TestingScreen';
-import StartScreen from "../screens/StartScreen";
 
 const Stack = createStackNavigator();
 
 const Navigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={SCREEN_NAME.START}
+      initialRouteName={SCREEN_NAME.TESTING}
       screenOptions={{
         headerShown: false,
         // cardStyle: {
@@ -23,7 +22,6 @@ const Navigator = () => {
       <Stack.Screen name={SCREEN_NAME.LOGIN} component={HomeScreen} />
       <Stack.Screen name={SCREEN_NAME.REGISTER} component={HomeScreen} />
       <Stack.Screen name={SCREEN_NAME.TESTING} component={TestingScreen} />
-      <Stack.Screen name={SCREEN_NAME.START} component={StartScreen} />
     </Stack.Navigator>
   );
 };
