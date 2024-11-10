@@ -16,4 +16,10 @@ export const IMAGE_RESOURCE = {
     },
     pause: require("../../assets/images/player/icon.png"),
   },
+  start: {
+    background: require("../../assets/images/start/background.png"),
+    iconGoogle: require("../../assets/images/start/icon_google.png"),
+    iconFacebook: require("../../assets/images/start/icon_facebook.png"),
+    iconApple: require("../../assets/images/start/icon_apple.png"),
+  },
 };
