@@ -16,11 +16,12 @@ export const FontSizeConstants = {
 
 
 export const ButtonImageSizeContants = {
-  sm: verticalScale(8),    // Small
-  nm: verticalScale(18),   // Normal (medium)
-  md: verticalScale(20),   // Medium
-  lg: verticalScale(25),   // Large
-  xlg: verticalScale(27),  // Extra large
-  xl: verticalScale(32),   // Extra extra large
-  xxl: verticalScale(35),  // Extra extra extra large
+  sm: verticalScale(8), // Small
+  nm: verticalScale(18), // Normal (medium)
+  md: verticalScale(20), // Medium
+  lg: verticalScale(25), // Large
+  xlg: verticalScale(27), // Extra large
+  xl: verticalScale(32), // Extra extra large
+  xxl: verticalScale(35), // Extra extra extra large
+  xxxl: verticalScale(40), // Extra extra extra extra large
 };
