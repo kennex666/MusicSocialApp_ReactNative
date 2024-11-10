@@ -1,7 +1,7 @@
 import { scaledFontSize, verticalScale } from "../utils/Scale";
 import { Platform } from "react-native";
 
-export const FontSizeConstants = {
+export const FontSizeConstants: any = {
   xxxs: (Platform.OS == 'web') ? scaledFontSize(6) : scaledFontSize(6),    // Extra extra extra small
   xs: scaledFontSize(8),     // Extra small
   sm: scaledFontSize(12),    // Small
