@@ -45,7 +45,7 @@ export default function Stack({
   flex = null,
   ...props
 }: StackProps): JSX.Element {
-  return onPress ? (
+  return onPress || onLongPress ? (
     <TouchableOpacity
       onPress={() => onPress && onPress()}
       onLongPress={() => onLongPress && onLongPress()}

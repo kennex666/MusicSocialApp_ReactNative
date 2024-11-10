@@ -15,10 +15,15 @@ export const IMAGE_RESOURCE = {
       inactive: require("../../assets/images/player/btn-play.png"),
     },
     playNocircle: {
-        active: require("../../assets/images/player/btn-pause-white-nocircle.png"),
-        inactive: require("../../assets/images/player/btn-play-white-nocircle.png"),
+      active: require("../../assets/images/player/btn-pause-white-nocircle.png"),
+      inactive: require("../../assets/images/player/btn-play-white-nocircle.png"),
     },
+    playing: require("../../assets/images/player/btn-more-green.png"),
     pause: require("../../assets/images/player/icon.png"),
+  },
+  details: {
+    more: require("../../assets/images/player/btn-more.png"),
+    download: require("../../assets/images/player/ico-download.png"),
   },
   icon: {
     connection: {
