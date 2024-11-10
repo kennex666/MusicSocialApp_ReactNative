@@ -1,0 +1,73 @@
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { COLORS } from "../../constants/color";
+import { vh, vw } from "../../utils/ViewpointEmulator";
+import ImageButton from "../../components/ImageButton";
+import { IMAGE_RESOURCE } from "../../constants/image_resource";
+import { ButtonImageSizeContants, FontSizeConstants } from "../../constants/font-size";
+
+export default function SignUpEmailScreen(): JSX.Element {
+    return (
+        <SafeAreaProvider>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.titleView}>
+                    <ImageButton
+                        image={IMAGE_RESOURCE.signUp.iconBack}
+                        size={ButtonImageSizeContants.xl}
+                        onPress={() => {}}
+                        style={styles.backButton}
+                    />
+                    <Text style={styles.titleText}>Create account</Text>
+                </View>
+                <View style={styles.inputView}>
+                    <Text style={styles.inputLabel}>What's your email?</Text>
+                </View>
+                <View style={styles.buttonView}></View>
+            </SafeAreaView>
+        </SafeAreaProvider>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "flex-start",
+        alignItems: "center",
+        backgroundColor: COLORS.primary.background,
+    },
+    titleView: {
+        width: vw(85),
+        height: vh(10),
+        paddingVertical: vh(2),
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+    },
+    titleText: {
+        width: "60%",
+        textAlign: "center",
+        color: COLORS.primary.text,
+        fontSize: FontSizeConstants.md,
+        fontWeight: "bold",
+    },
+    backButton: {
+        width: "20%",
+        justifyContent: "center",
+        alignItems: "flex-start",
+    },
+    inputView: {
+        width: vw(85),
+        height: vh(15),
+        paddingVertical: vh(2),
+    },
+    inputLabel: {
+        color: COLORS.primary.text,
+        fontSize: FontSizeConstants.xl,
+        fontWeight: "bold",
+    },
+    buttonView: {
+        width: vw(85),
+        height: vh(10),
+        paddingVertical: vh(2),
+    },
+});
