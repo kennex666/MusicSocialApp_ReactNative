@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
     textInput: {
         width: vw(85),
         height: vh(5.5),
-        color: COLORS.tertiary.text,
-        backgroundColor: COLORS.tertiary.background,
+        color: COLORS.primary.text,
+        backgroundColor: COLORS.secondary.background,
         paddingHorizontal: 20,
         borderRadius: 5,
         fontSize: FontSizeConstants.nm,
