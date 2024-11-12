@@ -8,7 +8,15 @@ export const COLORS = {
         "text": "#1ed760"
     },
     "tertiary": {
-        "background": "#777777",
-        "text": "#ffffff"
-    }
+        "background": "#1ed760",
+        "text": "#B3B3B3"
+    },
+    "spotify": {
+        "background": "#1ED760",
+        "text": "#000000"
+    },
+    "primaryReverse": {
+        "background": "#ffffff",
+        "text": "#121212"
+    },
 }

@@ -1,7 +1,7 @@
 import { scaledFontSize, verticalScale } from "../utils/Scale";
 import { Platform } from "react-native";
 
-export const FontSizeConstants = {
+export const FontSizeConstants: any = {
   xxxs: (Platform.OS == 'web') ? scaledFontSize(6) : scaledFontSize(6),    // Extra extra extra small
   xs: scaledFontSize(8),     // Extra small
   sm: scaledFontSize(12),    // Small
@@ -16,11 +16,13 @@ export const FontSizeConstants = {
 
 
 export const ButtonImageSizeContants = {
-  sm: verticalScale(8),    // Small
-  nm: verticalScale(18),   // Normal (medium)
-  md: verticalScale(20),   // Medium
-  lg: verticalScale(25),   // Large
-  xlg: verticalScale(27),  // Extra large
-  xl: verticalScale(32),   // Extra extra large
-  xxl: verticalScale(35),  // Extra extra extra large
+  xs: verticalScale(10), // Extra small
+  sm: verticalScale(15), // Small
+  nm: verticalScale(18), // Normal (medium)
+  md: verticalScale(20), // Medium
+  lg: verticalScale(25), // Large
+  xlg: verticalScale(27), // Extra large
+  xl: verticalScale(32), // Extra extra large
+  xxl: verticalScale(35), // Extra extra extra large
+  xxxl: verticalScale(40), // Extra extra extra extra large
 };
