@@ -9,12 +9,13 @@ import SearchTextInput from "../components/SearchTextInput";
 import { vh } from "../utils/ViewpointEmulator";
 import ChoosePodcastButton from "../components/ChoosePodcastButton";
 import SearchResultButton from "../components/SearchResultButton";
+import { IMAGE_RESOURCE } from "../constants/image_resource";
 
 
 export default function TestingScreen() {
     return (
-        <ScrollView
-            contentContainerStyle={{
+        <View
+            style={{
                 alignItems: "center",
                 justifyContent: "flex-start",
                 backgroundColor: "#000000",
@@ -25,15 +26,15 @@ export default function TestingScreen() {
             <SignUpButton />
             <ContinueLogInButton
                 text="Continue with Google"
-                image={require("../../assets/favicon.png")}
+                image={IMAGE_RESOURCE.static.testing}
             />
             <ContinueLogInButton
                 text="Continue with Facebook"
-                image={require("../../assets/favicon.png")}
+                image={IMAGE_RESOURCE.static.testing}
             />
             <ContinueLogInButton
                 text="Continue with Apple"
-                image={require("../../assets/favicon.png")}
+                image={IMAGE_RESOURCE.static.testing}
             />
             <FormTextInput />
             <NextButton />
@@ -45,18 +46,18 @@ export default function TestingScreen() {
                 }}
             >
                 <ChooseArtistButton
-                    image={require("../../assets/adaptive-icon.png")}
+                    image={IMAGE_RESOURCE.static.testing}
                     size={100}
                 />
                 <ChooseArtistButton
-                    image={require("../../assets/adaptive-icon.png")}
+                    image={IMAGE_RESOURCE.static.testing}
                     size={200}
                 />
                 <ChooseArtistButton
-                    image={require("../../assets/adaptive-icon.png")}
+                    image={IMAGE_RESOURCE.static.testing}
                 />
             </View>
-            <SearchTextInput image={require("../../assets/favicon.png")} />
+            <SearchTextInput image={IMAGE_RESOURCE.static.testing} />
             <View
                 style={{
                     flexDirection: "row",
@@ -65,32 +66,32 @@ export default function TestingScreen() {
                 }}
             >
                 <ChoosePodcastButton
-                    image={require("../../assets/adaptive-icon.png")}
+                    image={IMAGE_RESOURCE.static.testing}
                 />
                 <ChoosePodcastButton
-                    image={require("../../assets/adaptive-icon.png")}
+                    image={IMAGE_RESOURCE.static.testing}
                 />
                 <ChoosePodcastButton
-                    image={require("../../assets/adaptive-icon.png")}
+                    image={IMAGE_RESOURCE.static.testing}
                 />
             </View>
             <View>
                 <SearchResultButton
-                    image={require("../../assets/adaptive-icon.png")}
+                    image={IMAGE_RESOURCE.static.testing}
                     title="FKA Twigs"
                     subtitle="Artist"
                 />
                 <SearchResultButton
-                    image={require("../../assets/adaptive-icon.png")}
+                    image={IMAGE_RESOURCE.static.testing}
                     title="FKA Twigs"
                     subtitle="Artist"
                 />
                 <SearchResultButton
-                    image={require("../../assets/adaptive-icon.png")}
+                    image={IMAGE_RESOURCE.static.testing}
                     title="FKA Twigs"
                     subtitle="Artist"
                 />
             </View>
-        </ScrollView>
+        </View>
     );
 }
