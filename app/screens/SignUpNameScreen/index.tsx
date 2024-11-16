@@ -13,8 +13,25 @@ import {
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
 import TextButton from "../../components/TextButton";
+import { useState } from "react";
 
 export default function SignUpNameScreen(): JSX.Element {
+    const [policySend, setPolicySend] = useState(false);
+    const [policyShare, setPolicyShare] = useState(false);
+
+    const policyImageMap: { [key: string]: any } = {
+        true: IMAGE_RESOURCE.signUp.iconCheck,
+        false: IMAGE_RESOURCE.signUp.iconUncheck,
+    };
+
+    const onPressPolicySend = () => {
+        setPolicySend(!policySend);
+    };
+
+    const onPressPolicyShare = () => {
+        setPolicyShare(!policyShare);
+    };
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -99,10 +116,10 @@ export default function SignUpNameScreen(): JSX.Element {
                             />
                         </Stack>
                         <ImageButton
-                            image={IMAGE_RESOURCE.signUp.iconUncheck}
+                            image={policyImageMap[policySend.toString()]}
                             size={ButtonImageSizeContants.sm}
                             style={styles.checkButton}
-                            onPress={() => {}}
+                            onPress={() => onPressPolicySend()}
                         />
                     </Stack>
                     <Stack
@@ -117,10 +134,10 @@ export default function SignUpNameScreen(): JSX.Element {
                             />
                         </Stack>
                         <ImageButton
-                            image={IMAGE_RESOURCE.signUp.iconUncheck}
+                            image={policyImageMap[policyShare.toString()]}
                             size={ButtonImageSizeContants.sm}
                             style={styles.checkButton}
-                            onPress={() => {}}
+                            onPress={() => onPressPolicyShare()}
                         />
                     </Stack>
                 </Stack>
