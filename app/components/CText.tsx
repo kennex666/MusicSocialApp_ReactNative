@@ -59,14 +59,10 @@ export default function Text({
   return (
     <T
       style={[
-        size
-          ? {
-              fontSize:
-                typeof size === "number"
-                  ? size
-                  : FontSizeConstants[size] ?? FontSizeConstants.nm,
-            }
-          : { fontSize: FontSizeConstants.nm },
+        size ? { 
+          fontSize: typeof size === "number"  ?  size : FontSizeConstants[size] ?? FontSizeConstants.nm, 
+        } 
+        : { fontSize: FontSizeConstants.nm },
         bold && { fontWeight: "bold" },
         italic && { fontStyle: "italic" },
         textAlign && { textAlign: textAlign },

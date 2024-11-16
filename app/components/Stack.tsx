@@ -1,4 +1,4 @@
-import { TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../constants/color";
 
 interface StackProps {
@@ -8,10 +8,23 @@ interface StackProps {
     | "flex-end"
     | "space-between"
     | "space-around"
-    | "space-evenly";
-  alignItems?: "center" | "flex-start" | "flex-end" | "stretch" | "baseline";
-  flexDirection?: "row" | "row-reverse" | "column" | "column-reverse";
-  alignSelf?: "center" | "flex-start" | "flex-end" | "stretch" | "baseline";
+    | "space-evenly"
+    | null;
+  alignItems?:
+    | "center"
+    | "flex-start"
+    | "flex-end"
+    | "stretch"
+    | "baseline"
+    | null;
+  flexDirection?: "row" | "row-reverse" | "column" | "column-reverse" | null;
+  alignSelf?:
+    | "center"
+    | "flex-start"
+    | "flex-end"
+    | "stretch"
+    | "baseline"
+    | null;
   gap?: number;
   rowGap?: number;
   columnGap?: number;
@@ -27,9 +40,9 @@ interface StackProps {
 }
 
 export default function Stack({
-  justifyContent = "flex-start",
-  alignItems = "flex-start",
-  alignSelf = "flex-start",
+  justifyContent = null,
+  alignItems = null,
+  alignSelf = null,
   flexDirection = "column",
   gap = 0,
   rowGap = 0,
@@ -45,77 +58,35 @@ export default function Stack({
   flex = null,
   ...props
 }: StackProps): JSX.Element {
+  const styleCustom = [
+    width && { width: width },
+    height && { height: height },
+    backgroundColor && { backgroundColor: backgroundColor },
+    flex && { flex: flex },
+    alignSelf && { alignSelf: alignSelf },
+    alignItems && { alignItems: alignItems },
+    gap && { gap: gap },
+    rowGap && { rowGap: rowGap },
+    columnGap && { columnGap: columnGap },
+    justifyContent && { justifyContent: justifyContent },
+    {
+      display: "flex",
+      flexDirection: flexDirection,
+      ...style,
+    },
+  ];
   return onPress || onLongPress ? (
     <TouchableOpacity
       onPress={() => onPress && onPress()}
       onLongPress={() => onLongPress && onLongPress()}
       disabled={disabled}
-      style={[
-        width
-          ? {
-              width: width,
-            }
-          : null,
-        height
-          ? {
-              height: height,
-            }
-          : null,
-        backgroundColor
-          ? {
-              backgroundColor: backgroundColor,
-            }
-          : null,
-        flex ? { flex: flex } : null,
-        {
-          display: "flex",
-          flexDirection: flexDirection,
-          justifyContent: justifyContent,
-          alignItems: alignItems,
-          alignSelf: alignSelf,
-          rowGap: rowGap,
-          columnGap: columnGap,
-          gap: gap,
-          ...style,
-        },
-      ]}
+      style={styleCustom}
       {...props}
     >
       {children}
     </TouchableOpacity>
   ) : (
-    <View
-      style={[
-        width
-          ? {
-              width: width,
-            }
-          : null,
-        height
-          ? {
-              height: height,
-            }
-          : null,
-        backgroundColor
-          ? {
-              backgroundColor: backgroundColor,
-            }
-          : null,
-        flex ? { flex: flex } : null,
-        {
-          display: "flex",
-          flexDirection: flexDirection,
-          justifyContent: justifyContent,
-          alignItems: alignItems,
-          alignSelf: alignSelf,
-          rowGap: rowGap,
-          columnGap: columnGap,
-          gap: gap,
-          ...style,
-        },
-      ]}
-      {...props}
-    >
+    <View style={styleCustom} {...props}>
       {children}
     </View>
   );

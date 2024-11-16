@@ -36,6 +36,8 @@ export const IMAGE_RESOURCE = {
   },
   static: {
     album: require("../../assets/images/static_resources/album-test.png"),
+    testing: require("../../assets/icon.png"),
+    testing2: require("../../assets/adaptive-icon.png"),
   },
   start: {
     background: require("../../assets/images/start/background.png"),
@@ -45,5 +47,5 @@ export const IMAGE_RESOURCE = {
   },
   signUp: {
     iconBack: require("../../assets/images/signUp/icon_back.png"),
-  }
+  },
 };
