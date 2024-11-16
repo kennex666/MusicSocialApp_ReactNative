@@ -1,14 +1,14 @@
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { COLORS } from "../../constants/color";
-import { vh, vw } from "../../utils/ViewpointEmulator";
-import { IMAGE_RESOURCE } from "../../constants/image_resource";
-import { FontSizeConstants } from "../../constants/font-size";
-import SignUpButton from "../../components/SignUpButton";
 import ContinueLogInButton from "../../components/ContinueLogInButton";
-import TextButton from "../../components/TextButton";
-import Stack from "../../components/Stack";
 import Text from "../../components/CText";
+import SignUpButton from "../../components/SignUpButton";
+import Stack from "../../components/Stack";
+import TextButton from "../../components/TextButton";
+import { COLORS } from "../../constants/color";
+import { FontSizeConstants } from "../../constants/font-size";
+import { IMAGE_RESOURCE } from "../../constants/image_resource";
+import { vh, vw } from "../../utils/ViewpointEmulator";
 
 export default function StartScreen(): JSX.Element {
     return (

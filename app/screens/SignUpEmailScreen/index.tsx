@@ -1,17 +1,17 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { COLORS } from "../../constants/color";
-import { vh, vw } from "../../utils/ViewpointEmulator";
+import Text from "../../components/CText";
+import FormTextInput from "../../components/FormTextInput";
 import ImageButton from "../../components/ImageButton";
-import { IMAGE_RESOURCE } from "../../constants/image_resource";
+import NextButton from "../../components/NextButton";
+import Stack from "../../components/Stack";
+import { COLORS } from "../../constants/color";
 import {
     ButtonImageSizeContants,
     FontSizeConstants,
 } from "../../constants/font-size";
-import FormTextInput from "../../components/FormTextInput";
-import NextButton from "../../components/NextButton";
-import Stack from "../../components/Stack";
-import Text from "../../components/CText";
+import { IMAGE_RESOURCE } from "../../constants/image_resource";
+import { vh, vw } from "../../utils/ViewpointEmulator";
 
 export default function SignUpEmailScreen(): JSX.Element {
     return (
