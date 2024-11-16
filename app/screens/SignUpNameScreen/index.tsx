@@ -6,9 +6,13 @@ import ImageButton from "../../components/ImageButton";
 import NextButton from "../../components/NextButton";
 import Stack from "../../components/Stack";
 import { COLORS } from "../../constants/color";
-import { ButtonImageSizeContants, FontSizeConstants } from "../../constants/font-size";
+import {
+    ButtonImageSizeContants,
+    FontSizeConstants,
+} from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
+import TextButton from "../../components/TextButton";
 
 export default function SignUpNameScreen(): JSX.Element {
     return (
@@ -53,12 +57,84 @@ export default function SignUpNameScreen(): JSX.Element {
                     />
                 </Stack>
                 <Stack
+                    width={vw(90)}
+                    height={vh(0.1)}
+                    backgroundColor={COLORS.primary.text}
+                    children={null}
+                />
+                <Stack
+                    width={vw(80)}
+                    height={vh(40)}
+                    justifyContent={"space-evenly"}
+                    alignItems={"flex-start"}
+                    gap={vh(1)}
+                >
+                    <Text
+                        size={FontSizeConstants.sm}
+                        value='By tapping on "Create account", you agree to the spotify Terms of Use.'
+                    />
+                    <Text
+                        size={FontSizeConstants.sm}
+                        color={COLORS.spotify.background}
+                        value="Term of Use"
+                    />
+                    <Text
+                        size={FontSizeConstants.sm}
+                        value="To learn more about how Spotify collect, uses, shares and protects your personal data, Please see the Spotify Privacy Policy."
+                    />
+                    <Text
+                        size={FontSizeConstants.sm}
+                        color={COLORS.spotify.background}
+                        value="Privacy Policy"
+                    />
+                    <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        alignItems={"center"}
+                    >
+                        <Stack width={"80%"}>
+                            <Text
+                                size={FontSizeConstants.sm}
+                                value="Please send me news and offers from Spotify."
+                            />
+                        </Stack>
+                        <ImageButton
+                            image={IMAGE_RESOURCE.signUp.iconUncheck}
+                            size={ButtonImageSizeContants.sm}
+                            style={styles.checkButton}
+                            onPress={() => {}}
+                        />
+                    </Stack>
+                    <Stack
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}
+                        alignItems={"center"}
+                    >
+                        <Stack width={"80%"}>
+                            <Text
+                                size={FontSizeConstants.sm}
+                                value="Share my registration data with Spotify content providers for marketing purposes."
+                            />
+                        </Stack>
+                        <ImageButton
+                            image={IMAGE_RESOURCE.signUp.iconUncheck}
+                            size={ButtonImageSizeContants.sm}
+                            style={styles.checkButton}
+                            onPress={() => {}}
+                        />
+                    </Stack>
+                </Stack>
+                <Stack
                     width={vw(85)}
-                    height={vh(5)}
-                    justifyContent={"center"}
+                    height={vh(25)}
+                    justifyContent={"flex-end"}
                     alignItems={"center"}
                 >
-                    <NextButton />
+                    <TextButton
+                        text="Create an account"
+                        buttonStyle={styles.createButton}
+                        textStyle={styles.createText}
+                    />
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>
@@ -77,5 +153,23 @@ const styles = StyleSheet.create({
         width: "20%",
         justifyContent: "center",
         alignItems: "flex-start",
+    },
+    createButton: {
+        width: "50%",
+        height: vh(6),
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: vh(6) / 2,
+        backgroundColor: COLORS.primaryReverse.background,
+    },
+    createText: {
+        color: COLORS.primaryReverse.text,
+        fontSize: FontSizeConstants.nm,
+        fontWeight: "bold",
+    },
+    checkButton: {
+        width: "20%",
+        justifyContent: "center",
+        alignItems: "center",
     },
 });
