@@ -24,5 +24,6 @@ const styles = StyleSheet.create({
     text: {
         color: COLORS.primaryReverse.text,
         fontSize: FontSizeConstants.nm,
+        fontWeight: "bold",
     },
 });
