@@ -58,6 +58,7 @@ export const IMAGE_RESOURCE = {
   },
   album: {
     iconBack: require("../../assets/images/album/icon_back.png"),
+    iconSpotify: require("../../assets/images/album/icon_spotify.png"),
   },
   albumControl: {
     iconLike: require("../../assets/images/albumControl/icon_like.png"),

@@ -1,13 +1,13 @@
 import { FlatList, StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { COLORS } from "../../constants/color";
-import { vh, vw } from "../../utils/ViewpointEmulator";
-import Stack from "../../components/Stack";
-import SearchTextInput from "../../components/SearchTextInput";
-import { IMAGE_RESOURCE } from "../../constants/image_resource";
-import SearchResultButton from "../../components/SearchResultButton";
 import Text from "../../components/CText";
+import SearchResultButton from "../../components/SearchResultButton";
+import SearchTextInput from "../../components/SearchTextInput";
+import Stack from "../../components/Stack";
+import { COLORS } from "../../constants/color";
 import { FontSizeConstants } from "../../constants/font-size";
+import { IMAGE_RESOURCE } from "../../constants/image_resource";
+import { vh, vw } from "../../utils/ViewpointEmulator";
 
 const data = [
     {
