@@ -57,5 +57,13 @@ export const IMAGE_RESOURCE = {
   },
   album: {
     iconBack: require("../../assets/images/album/icon_back.png"),
+  },
+  albumControl: {
+    iconLike: require("../../assets/images/albumControl/icon_like.png"),
+    iconArtist: require("../../assets/images/albumControl/icon_artist.png"),
+    iconShare: require("../../assets/images/albumControl/icon_share.png"),
+    iconAdd: require("../../assets/images/albumControl/icon_add.png"),
+    iconQueue: require("../../assets/images/albumControl/icon_queue.png"),
+    iconRadio: require("../../assets/images/albumControl/icon_radio.png"),
   }
 };
