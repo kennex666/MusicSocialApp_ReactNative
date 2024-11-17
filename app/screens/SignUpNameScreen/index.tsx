@@ -3,8 +3,8 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Text from "../../components/CText";
 import FormTextInput from "../../components/FormTextInput";
 import ImageButton from "../../components/ImageButton";
-import NextButton from "../../components/NextButton";
 import Stack from "../../components/Stack";
+import TextButton from "../../components/TextButton";
 import { COLORS } from "../../constants/color";
 import {
     ButtonImageSizeContants,
@@ -12,13 +12,11 @@ import {
 } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
-import TextButton from "../../components/TextButton";
-import { useState } from "react";
 
 const handlers = {
     onPressPolicySend: ({ active, setActive }: any) => {},
     onPressPolicyShare: ({ active, setActive }: any) => {},
-}
+};
 
 export default function SignUpNameScreen(): JSX.Element {
     return (
