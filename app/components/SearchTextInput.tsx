@@ -25,7 +25,7 @@ export default function SearchTextInput(props: any): JSX.Element {
 
 const styles = StyleSheet.create({
     view: {
-        width: vw(85),
+        width: vw(70),
         height: vh(5.5),
         justifyContent: "flex-start",
         alignItems: "center",
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
     },
     image: {
-        height: "75%",
+        height: "60%",
         aspectRatio: 1,
         marginLeft: "15%",
     },

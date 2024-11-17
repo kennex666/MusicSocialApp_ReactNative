@@ -100,8 +100,11 @@ export default function SearchScreen(): JSX.Element {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
-                <Stack backgroundColor={"red"}>
+                <Stack width={vw(85)} justifyContent={"space-between"} alignItems={"center"} flexDirection={"row"} gap={vw(5)}>
                     <SearchTextInput image={IMAGE_RESOURCE.search.iconSearch} />
+                    <Stack justifyContent={"center"} alignItems={"center"} onPress={() => {}}>
+                        <Text value="Cancel" color={COLORS.primary.text} />
+                    </Stack>
                 </Stack>
                 <Stack width={vw(85)} height={vh(5)} justifyContent={"center"} alignItems={"flex-start"}>
                     <Text size={FontSizeConstants.md} bold={true}>
