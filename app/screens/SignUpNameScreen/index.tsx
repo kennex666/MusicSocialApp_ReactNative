@@ -15,23 +15,12 @@ import { vh, vw } from "../../utils/ViewpointEmulator";
 import TextButton from "../../components/TextButton";
 import { useState } from "react";
 
+const handlers = {
+    onPressPolicySend: ({ active, setActive }: any) => {},
+    onPressPolicyShare: ({ active, setActive }: any) => {},
+}
+
 export default function SignUpNameScreen(): JSX.Element {
-    const [policySend, setPolicySend] = useState(false);
-    const [policyShare, setPolicyShare] = useState(false);
-
-    const policyImageMap: { [key: string]: any } = {
-        true: IMAGE_RESOURCE.signUp.iconCheck,
-        false: IMAGE_RESOURCE.signUp.iconUncheck,
-    };
-
-    const onPressPolicySend = () => {
-        setPolicySend(!policySend);
-    };
-
-    const onPressPolicyShare = () => {
-        setPolicyShare(!policyShare);
-    };
-
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -116,10 +105,11 @@ export default function SignUpNameScreen(): JSX.Element {
                             />
                         </Stack>
                         <ImageButton
-                            image={policyImageMap[policySend.toString()]}
+                            image={IMAGE_RESOURCE.signUp.check}
                             size={ButtonImageSizeContants.sm}
                             style={styles.checkButton}
-                            onPress={() => onPressPolicySend()}
+                            isControllActive={false}
+                            onPress={handlers.onPressPolicySend}
                         />
                     </Stack>
                     <Stack
@@ -134,10 +124,11 @@ export default function SignUpNameScreen(): JSX.Element {
                             />
                         </Stack>
                         <ImageButton
-                            image={policyImageMap[policyShare.toString()]}
+                            image={IMAGE_RESOURCE.signUp.check}
                             size={ButtonImageSizeContants.sm}
                             style={styles.checkButton}
-                            onPress={() => onPressPolicyShare()}
+                            isControllActive={false}
+                            onPress={handlers.onPressPolicyShare}
                         />
                     </Stack>
                 </Stack>

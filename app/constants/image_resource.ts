@@ -47,8 +47,10 @@ export const IMAGE_RESOURCE = {
   },
   signUp: {
     iconBack: require("../../assets/images/signUp/icon_back.png"),
-    iconCheck: require("../../assets/images/signUp/icon_check.png"),
-    iconUncheck: require("../../assets/images/signUp/icon_uncheck.png"),
+    check: {
+      active: require("../../assets/images/signUp/icon_check.png"),
+      inactive: require("../../assets/images/signUp/icon_uncheck.png"),
+    }
   },
   search: {
     iconSearch: require("../../assets/images/search/icon_search.png"),
