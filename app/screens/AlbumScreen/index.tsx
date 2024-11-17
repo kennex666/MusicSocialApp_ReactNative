@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, StyleSheet } from "react-native";
+import { FlatList, Image, StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Text from "../../components/CText";
 import ImageButton from "../../components/ImageButton";
@@ -11,12 +11,98 @@ import {
 } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
+import SearchResultButton from "../../components/SearchResultButton";
 
 const handlers = {
-    onPlay: ({ active, setActive }: any) => {
-        console.log("Play button pressed");
-    },
+    onPlay: ({ active, setActive }: any) => {},
 };
+
+const data = [
+    {
+        id: 1,
+        title: "Cơm gà xối mỡ",
+        subtitle: "Cơm gà xối mỡ ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 2,
+        title: "Bún bò Huế",
+        subtitle: "Bún bò Huế ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 3,
+        title: "Cơm gà xối mỡ",
+        subtitle: "Cơm gà xối mỡ ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 4,
+        title: "Bún bò Huế",
+        subtitle: "Bún bò Huế ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 5,
+        title: "Cơm gà xối mỡ",
+        subtitle: "Cơm gà xối mỡ ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 6,
+        title: "Bún bò Huế",
+        subtitle: "Bún bò Huế ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 7,
+        title: "Cơm gà xối mỡ",
+        subtitle: "Cơm gà xối mỡ ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 8,
+        title: "Bún bò Huế",
+        subtitle: "Bún bò Huế ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 9,
+        title: "Cơm gà xối mỡ",
+        subtitle: "Cơm gà xối mỡ ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 10,
+        title: "Bún bò Huế",
+        subtitle: "Bún bò Huế ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 11,
+        title: "Cơm gà xối mỡ",
+        subtitle: "Cơm gà xối mỡ ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 12,
+        title: "Bún bò Huế",
+        subtitle: "Bún bò Huế ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 13,
+        title: "Cơm gà xối mỡ",
+        subtitle: "Cơm gà xối mỡ ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+    {
+        id: 14,
+        title: "Bún bò Huế",
+        subtitle: "Bún bò Huế ngon tuyệt",
+        image: require("../../../assets/favicon.png"),
+    },
+];
 
 export default function AlbumScreen(): JSX.Element {
     const albumCover = require("../../../assets/icon.png");
@@ -125,6 +211,19 @@ export default function AlbumScreen(): JSX.Element {
                                 onPress={handlers.onPlay}
                             />
                         </Stack>
+                    </Stack>
+                    <Stack width={vw(90)} height={vh(30)}>
+                        <FlatList
+                            data={data}
+                            renderItem={({ item }) => (
+                                <SearchResultButton
+                                    image={item.image}
+                                    title={item.title}
+                                    subtitle={item.subtitle}
+                                />
+                            )}
+                            keyExtractor={(item) => item.id.toString()}
+                        />
                     </Stack>
                 </LinearGradient>
             </SafeAreaView>
