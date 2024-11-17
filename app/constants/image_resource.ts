@@ -53,7 +53,8 @@ export const IMAGE_RESOURCE = {
     }
   },
   search: {
-    iconSearch: require("../../assets/images/search/icon_search.png"),
+    iconSearchBlack: require("../../assets/images/search/icon_search_black.png"),
+    iconSearchWhite: require("../../assets/images/search/icon_search_white.png"),
   },
   album: {
     iconBack: require("../../assets/images/album/icon_back.png"),

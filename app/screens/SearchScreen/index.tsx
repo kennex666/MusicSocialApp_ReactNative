@@ -105,12 +105,11 @@ export default function SearchScreen(): JSX.Element {
                     justifyContent={"space-between"}
                     alignItems={"center"}
                     flexDirection={"row"}
-                    gap={vw(5)}
                 >
                     <SearchTextInput
-                        width={vw(70)}
+                        width={vw(65)}
                         height={vh(5.5)}
-                        image={IMAGE_RESOURCE.search.iconSearch}
+                        image={IMAGE_RESOURCE.search.iconSearchBlack}
                         backgroundColor={COLORS.primaryReverse.background}
                         placeholder="Search"
                         placeholderTextColor={COLORS.primaryReverse.text}
@@ -118,6 +117,8 @@ export default function SearchScreen(): JSX.Element {
                         textSize={FontSizeConstants.md}
                     />
                     <Stack
+                        width={vw(15)}
+                        height={vh(5.5)}
                         justifyContent={"center"}
                         alignItems={"center"}
                         onPress={() => {}}
