@@ -40,7 +40,7 @@ export default function AlbumControlScreen(): JSX.Element {
                     </Stack>
                     <Stack
                         width={vw(85)}
-                        height={vh(6)}
+                        height={vh(10)}
                         justifyContent={"space-evenly"}
                         alignItems={"center"}
                     >
@@ -101,19 +101,19 @@ export default function AlbumControlScreen(): JSX.Element {
                     </Stack>
                     <Stack
                         width={vw(85)}
-                        height={vh(10)}
-                        justifyContent={"flex-end"}
+                        height={vh(5)}
+                        justifyContent={"space-between"}
                         alignItems={"center"}
                         onPress={() => {}}
                     >
-                        <Stack style={{ marginBottom: "5%" }}>
+                        <Stack>
                             <Text bold={true} value="Close" />
                         </Stack>
                         <Stack
                             width={"50%"}
                             height={"5%"}
                             backgroundColor={COLORS.primary.text}
-                            style={{ borderRadius: 10 }}
+                            style={{ borderRadius: vh(5) }}
                             children={null}
                         />
                     </Stack>
