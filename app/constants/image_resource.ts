@@ -65,5 +65,8 @@ export const IMAGE_RESOURCE = {
     iconAdd: require("../../assets/images/albumControl/icon_add.png"),
     iconQueue: require("../../assets/images/albumControl/icon_queue.png"),
     iconRadio: require("../../assets/images/albumControl/icon_radio.png"),
+  },
+  setting: {
+    iconForward: require("../../assets/images/setting/icon_forward.png"),
   }
 };
