@@ -100,13 +100,37 @@ export default function SearchScreen(): JSX.Element {
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
-                <Stack width={vw(85)} justifyContent={"space-between"} alignItems={"center"} flexDirection={"row"} gap={vw(5)}>
-                    <SearchTextInput image={IMAGE_RESOURCE.search.iconSearch} />
-                    <Stack justifyContent={"center"} alignItems={"center"} onPress={() => {}}>
+                <Stack
+                    width={vw(85)}
+                    justifyContent={"space-between"}
+                    alignItems={"center"}
+                    flexDirection={"row"}
+                    gap={vw(5)}
+                >
+                    <SearchTextInput
+                        width={vw(70)}
+                        height={vh(5.5)}
+                        image={IMAGE_RESOURCE.search.iconSearch}
+                        backgroundColor={COLORS.primaryReverse.background}
+                        placeholder="Search"
+                        placeholderTextColor={COLORS.primaryReverse.text}
+                        textColor={COLORS.primaryReverse.text}
+                        textSize={FontSizeConstants.md}
+                    />
+                    <Stack
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        onPress={() => {}}
+                    >
                         <Text value="Cancel" color={COLORS.primary.text} />
                     </Stack>
                 </Stack>
-                <Stack width={vw(85)} height={vh(5)} justifyContent={"center"} alignItems={"flex-start"}>
+                <Stack
+                    width={vw(85)}
+                    height={vh(5)}
+                    justifyContent={"center"}
+                    alignItems={"flex-start"}
+                >
                     <Text size={FontSizeConstants.md} bold={true}>
                         Search results
                     </Text>
