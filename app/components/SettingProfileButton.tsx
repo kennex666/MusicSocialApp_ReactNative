@@ -29,7 +29,7 @@ export default function SettingProfileButton(props: any): JSX.Element {
                     width={"30%"}
                     height={"100%"}
                     justifyContent={"center"}
-                    alignItems={"center"}
+                    alignItems={"flex-start"}
                 >
                     <Image
                         source={image}
