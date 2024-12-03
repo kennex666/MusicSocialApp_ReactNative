@@ -8,9 +8,14 @@ import FormTextInput from "../../components/FormTextInput";
 import Stack from "../../components/Stack";
 import TextButton from "../../components/TextButton";
 import { COLORS } from "../../constants/color";
-import { FontSizeConstants } from "../../constants/font-size";
+import {
+    ButtonImageSizeContants,
+    FontSizeConstants,
+} from "../../constants/font-size";
 import { SCREEN_NAME } from "../../constants/screen";
 import { vh, vw } from "../../utils/ViewpointEmulator";
+import ImageButton from "../../components/ImageButton";
+import { IMAGE_RESOURCE } from "../../constants/image_resource";
 
 export default function LoginScreen(): JSX.Element {
     const navigation = useNavigation();
@@ -18,12 +23,14 @@ export default function LoginScreen(): JSX.Element {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
+    const [errorColor, setErrorColor] = useState<string>("");
 
+    const back = () => {
+        navigation.goBack();
+    };
     const login = async () => {
-        const body = JSON.stringify({
-            email: email,
-            password: password,
-        });
+        setError("Please wait...");
+        setErrorColor("white");
 
         try {
             const response = await fetch(
@@ -49,13 +56,17 @@ export default function LoginScreen(): JSX.Element {
 
             if (!user) {
                 setError("Email or password is incorrect.");
+                setErrorColor("red");
                 return;
             }
-
+            
+            setError("Login successful.");
+            setErrorColor("green");
             navigation.navigate(SCREEN_NAME.HOME);
         } catch (error) {
             console.log(error);
             setError("An error occurred. Please try again later.");
+            setErrorColor("red");
         }
     };
     return (
@@ -63,7 +74,21 @@ export default function LoginScreen(): JSX.Element {
             <SafeAreaView style={styles.container}>
                 <Stack
                     width={vw(85)}
-                    height={vh(50)}
+                    height={vh(10)}
+                    flexDirection={"row"}
+                    justifyContent={"flex-start"}
+                    alignItems={"center"}
+                >
+                    <ImageButton
+                        image={IMAGE_RESOURCE.signUp.iconBack}
+                        size={ButtonImageSizeContants.xl}
+                        style={styles.returnButton}
+                        onPress={back}
+                    />
+                </Stack>
+                <Stack
+                    width={vw(85)}
+                    height={vh(40)}
                     flexDirection={"column"}
                     justifyContent={"space-evenly"}
                     alignItems={"center"}
@@ -89,15 +114,15 @@ export default function LoginScreen(): JSX.Element {
                         textStyle={styles.loginText}
                         onPress={login}
                     />
-                    <Stack
-                        width={vw(85)}
-                        height={vh(10)}
-                        flexDirection={"column"}
-                        justifyContent={"space-evenly"}
-                        alignItems={"center"}
-                    >
-                        <Text color="red">{error}</Text>
-                    </Stack>
+                </Stack>
+                <Stack
+                    width={vw(85)}
+                    height={vh(10)}
+                    flexDirection={"column"}
+                    justifyContent={"space-evenly"}
+                    alignItems={"center"}
+                >
+                    <Text color={errorColor}>{error}</Text>
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>
@@ -107,7 +132,7 @@ export default function LoginScreen(): JSX.Element {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: COLORS.primary.background,
         gap: vh(1),
@@ -122,5 +147,10 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: FontSizeConstants.nm,
         fontWeight: "bold",
+    },
+    returnButton: {
+        width: "20%",
+        justifyContent: "center",
+        alignItems: "flex-start",
     },
 });
