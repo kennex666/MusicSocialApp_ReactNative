@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TouchableOpacity, Image } from "react-native";
 
 /**
@@ -18,7 +18,8 @@ interface ImageButtonProps {
   isControllActive?: boolean;
   style?: any;
   firstState?: boolean;
-  radius?: number
+  radius?: number;
+  activeState ?: boolean;
 }
 
 export default function ImageButton({
@@ -29,10 +30,15 @@ export default function ImageButton({
   style = {},
   firstState = false,
   radius = 0,
+  activeState,
   ...props
 }: ImageButtonProps): JSX.Element {
   const [active, setActive] = useState(firstState);
 
+    useEffect(() => {
+      setActive(activeState);
+    }, [activeState]);
+    
 
   return (
     <TouchableOpacity

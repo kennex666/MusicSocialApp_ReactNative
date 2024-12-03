@@ -9,15 +9,39 @@ import TextTicker from "react-native-text-ticker"
 import Slider from "@react-native-community/slider"
 import { vw } from "../utils/ViewpointEmulator"
 import MusicSlider from "./MusicSlider"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import { stopMusic } from "../redux/musicSlice"
+import { useSound } from "../redux/SoundContext"
 
 export const PlayerControl_Bottom = () => {
+    const dispatch = useDispatch();
+    const { music } = useSelector((state) => state.music);
+
+    const {
+      playSound,
+      pauseSound,
+      resumeSound,
+      stopSound,
+      isPlaying,
+      duration,
+      position,
+      soundInfo,
+      metadata
+    } = useSound();
+
+    useEffect(() => {
+      // console.log(position/1000, duration/1000)
+    }, [isPlaying, music, position]);
+
+
     return (
       <View style={styles.container}>
         <View style={styles.firstContainer}>
           <View>
             <ImageButton
               image={IMAGE_RESOURCE.static.album}
-              size={ButtonImageSizeContants.xxl}
+              size={ButtonImageSizeContants.lg}
             />
           </View>
 
@@ -25,7 +49,7 @@ export const PlayerControl_Bottom = () => {
             {/* Music name */}
             <TextTicker
               style={{
-                fontSize: FontSizeConstants.nm,
+                fontSize: FontSizeConstants.sm,
                 color: COLORS.primary.text,
                 paddingLeft: scale(5),
               }}
@@ -35,7 +59,7 @@ export const PlayerControl_Bottom = () => {
               repeatSpacer={50}
               marqueeDelay={1000}
             >
-              Music name
+              {metadata?.title}
             </TextTicker>
 
             {/* Device connection */}
@@ -48,8 +72,8 @@ export const PlayerControl_Bottom = () => {
               />
               <CText
                 style={styles.deviceConnectedText}
-                size="nm"
-                value="WM-100"
+                size="sm"
+                value="Not connected"
                 color={COLORS.secondary.text}
               />
             </View>
@@ -59,20 +83,33 @@ export const PlayerControl_Bottom = () => {
           <View style={styles.mediaControlContainer}>
             <ImageButton
               image={IMAGE_RESOURCE.icon.connection.bluetooth}
-              size={ButtonImageSizeContants.xlg}
+              size={ButtonImageSizeContants.md}
               firstState={true}
             />
 
             <ImageButton
               image={IMAGE_RESOURCE.player.playNocircle}
-              size={ButtonImageSizeContants.nm}
-              firstState={true}
+              size={ButtonImageSizeContants.xs}
+              firstState={isPlaying}
+              activeState={isPlaying}
+              onPress={() => {
+                if (isPlaying) {
+                  pauseSound();
+                } else {
+                  resumeSound();
+                }
+              }}
             />
           </View>
         </View>
 
         <View style={styles.secondaryContainer}>
-          <MusicSlider style={styles.slider}/>
+          <MusicSlider
+            style={styles.slider}
+            progressDuration={position / 1000}
+            maxDuration={duration / 1000}
+            isShowTimeBar={true}
+          />
         </View>
       </View>
     );
@@ -115,14 +152,11 @@ const styles = StyleSheet.create({
   firstContainer: {
     display: "flex",
     flexDirection: "row",
-    columnGap: scale(5),
     alignItems: "center",
     justifyContent: "space-between",
   },
   container: {
     display: "flex",
-    paddingVertical: verticalScale(2),
-    rowGap: verticalScale(2),
-    paddingHorizontal: scale(15),
+    width: "100%",
   },
 });

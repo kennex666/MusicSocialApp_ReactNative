@@ -1,7 +1,7 @@
 import { FlatList, Image, ScrollView, StyleSheet, View } from "react-native";
 import CText from "../../components/CText";
 import { ButtonImageSizeContants, FontSizeConstants } from "../../constants/font-size";
-import { vw } from "../../utils/ViewpointEmulator";
+import { vh, vw } from "../../utils/ViewpointEmulator";
 import { COLORS } from "../../constants/color";
 import Stack from "../../components/Stack";
 import Text from "../../components/CText";
@@ -9,6 +9,13 @@ import ImageButton from "../../components/ImageButton";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { scale, verticalScale } from "../../utils/Scale";
 import TitleAndImage from "../../components/TitleAndImage";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { playMusicURL } from "../../services/player";
+import { playMusic } from "../../redux/musicSlice";
+import { PlayerControl_Bottom } from '../../components/PlayerControl_Bottom';
+import PlayerControlComponent from "../../components/PlayerControl";
+import { useSound } from "../../redux/SoundContext";
 
 const madeForYou = [
   {
@@ -34,32 +41,92 @@ const madeForYou = [
 ]
 
 export default function HomeScreen(): JSX.Element {
-  return (  
-    <ScrollView style={styles.container}>
-      <Stack justifyContent="space-between" flexDirection="row" style={{
-        marginBottom: verticalScale(15)
-      }}>
-        <Stack flexDirection="row" columnGap={scale(10)} alignItems="center">
-          <ImageButton
-            image="https://placeholder.com/50x50"
-            size={ButtonImageSizeContants.lg}
-            radius={9999}
-          />
-          <Text value="Hi, Bao!" size="xl" bold />
+    const dispatch = useDispatch();
+    const { music } = useSelector((state) => state.music);
+    const {
+      playSound,
+      pauseSound,
+      resumeSound,
+      stopSound,
+      isPlaying,
+      duration,
+      position,
+      soundInfo,
+      metadata,
+      setMetadata
+    } = useSound();
+
+    useEffect(() => {
+      if (music?.sound) {
+        
+      }
+    }, [isPlaying, music]);
+
+  return (
+    <Stack style={styles.container}>
+      <ScrollView>
+        <Stack
+          justifyContent="space-between"
+          flexDirection="row"
+          style={{
+            marginBottom: verticalScale(15),
+          }}
+        >
+          <Stack flexDirection="row" columnGap={scale(10)} alignItems="center">
+            <ImageButton
+              image="https://placeholder.com/50x50"
+              size={ButtonImageSizeContants.lg}
+              radius={9999}
+            />
+            <Text value="Hi, Bao!" size="xl" bold />
+          </Stack>
         </Stack>
-      </Stack>
 
-      <Stack rowGap={verticalScale(30)}>
-        {/* Recently play */}
-        <TitleAndImage title="Made for you" data={madeForYou} />
+        <Stack rowGap={verticalScale(30)}>
+          {/* Recently play */}
+          <TitleAndImage
+            title="Made for you"
+            data={madeForYou}
+            onPress={async () => {
+              const sound = playSound("https://dtbao.io.vn/audio/imhiding.mp3");
+              setMetadata({
+                title: "Please tell me why",
+              });
+              // const player = {
+              //   sound: sound,
+              //   duration: 100,
+              //   name: "I'm hiding",
+              // };
+              // if (!isPlaying) {
+              //   dispatch(playMusic({ player }));
+              // }
+            }}
+          />
 
-        <TitleAndImage title="Popular radio" data={madeForYou} />
+          <TitleAndImage title="Popular radio" data={madeForYou} />
 
-        <TitleAndImage title="Your show" data={madeForYou} />
+          <TitleAndImage title="Your show" data={madeForYou} />
 
-        <TitleAndImage title="Top chart" data={madeForYou} />
-      </Stack>
-    </ScrollView>
+          <TitleAndImage title="Top chart" data={madeForYou} />
+        </Stack>
+      </ScrollView>
+
+      {
+        isPlaying && (
+          <Stack
+        style={{
+          position: "absolute",
+          bottom: 0,
+          height: 100,
+          backgroundColor: COLORS.primary.background,
+          paddingHorizontal: vw(5),
+          paddingTop: verticalScale(10),
+        }}
+      >
+        <PlayerControl_Bottom />
+      </Stack>)
+      }
+    </Stack>
   );
 }
 

@@ -11,7 +11,7 @@ const musicSlice = createSlice({
   reducers: {
     playMusic: (state, action) => {
       state.isPlaying = true;
-      state.music = action.payload; // Lưu thông tin bài hát
+      state.music = action.payload; // Lưu thông tin bài hát đang phát
     },
     stopMusic: (state) => {
       state.isPlaying = false;

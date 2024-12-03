@@ -5,17 +5,35 @@ import { vw } from "../utils/ViewpointEmulator";
 import { scale, verticalScale } from "../utils/Scale";
 import Text from "./CText";
 import { COLORS } from "../constants/color";
+import { useSound } from "../redux/SoundContext";
+import { useEffect } from "react";
 
 interface MusicSliderProps {
-    isShowTimeBar?: boolean;
-    style?: any;
+  isShowTimeBar?: boolean;
+  maxDuration?: number;
+  style?: any;
+  progressDuration?: number;
 }
 
-export default function MusicSlider({ isShowTimeBar = false, style }: MusicSliderProps) {
+export default function MusicSlider({
+  isShowTimeBar = false,
+  style,
+}: MusicSliderProps) {
+  const {
+    playSound,
+    pauseSound,
+    resumeSound,
+    stopSound,
+    isPlaying,
+    duration,
+    position,
+    soundInfo,
+    setPosition,
+  } = useSound();
+
   return (
     <Stack
       flexDirection="column"
-      width={vw(93)}
       justifyContent="center"
       alignItems="center"
       alignSelf="center"
@@ -23,9 +41,13 @@ export default function MusicSlider({ isShowTimeBar = false, style }: MusicSlide
       <Slider
         style={style ? style : styles.slider}
         minimumValue={0}
-        maximumValue={100}
-        value={50}
-        onSlidingComplete={() => {}}
+        maximumValue={duration / 1000}
+        value={position / 1000}
+        onSlidingComplete={(value) => {
+          console.log("onSlidingComplete");
+          setPosition(value * 1000);
+        }}
+        
         minimumTrackTintColor="#fff"
         maximumTrackTintColor="#777777"
         thumbTintColor="#fff" // transparent
@@ -41,10 +63,10 @@ export default function MusicSlider({ isShowTimeBar = false, style }: MusicSlide
           }}
         >
           <Text size="sm" color={COLORS.tertiary.text}>
-            0:19
+            {position / 1000}
           </Text>
           <Text size="sm" color={COLORS.tertiary.text}>
-            19:03
+            {duration / 1000}
           </Text>
         </Stack>
       )}

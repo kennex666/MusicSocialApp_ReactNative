@@ -1,17 +1,12 @@
-import Sound from "react-native-sound";
+import { Audio } from "expo-av";
 
 
-export function playMusicURL(uri: any, isLoop: boolean) {
-    const player = new Sound(uri, undefined, (error) => {
-      if (error) {
-        console.log("Failed to load the sound", error);
-        return;
-      }
-      player.setNumberOfLoops(isLoop ? -1 : 0); // Đặt nhạc phát liên tục
-      player.play(() => {
-        // Đảm bảo khi nhạc kết thúc, tiếp tục phát
-        player.setCurrentTime(0);
-        player.play();
-      });
+
+export async function playMusicURL(uri: any, isLoop: boolean = false) {
+    const { sound } = await Audio.Sound.createAsync({
+      uri: uri,
     });
+    await sound.playAsync();
+    return sound;
 }
+

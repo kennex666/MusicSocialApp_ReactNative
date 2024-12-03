@@ -8,6 +8,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import store from './app/redux/store';
+import { SoundProvider } from './app/redux/SoundContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,13 +30,15 @@ export default function App() {
 
   return (
     <Provider store={store}>
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <NavigationContainer>
-          <Navigator />
-        </NavigationContainer>
-      </SafeAreaView>
-    </SafeAreaProvider>
+      <SoundProvider>
+        <SafeAreaProvider>
+          <SafeAreaView style={styles.container}>
+            <NavigationContainer>
+              <Navigator />
+            </NavigationContainer>
+          </SafeAreaView>
+        </SafeAreaProvider>
+      </SoundProvider>
     </Provider>
   );
 }
