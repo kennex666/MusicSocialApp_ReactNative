@@ -12,13 +12,22 @@ import {
 } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { SCREEN_NAME } from "../../constants/screen";
 import { useState } from "react";
 
+type userType = {
+    email: string;
+    password: string;
+    gender: string;
+    name: string;
+};
+
+type routeProps = RouteProp<{ params: userType }, "params">;
+
 export default function SignUpNameScreen(): JSX.Element {
     const navigation = useNavigation();
-    const route = useRoute();
+    const route = useRoute<routeProps>();
     const [name, setName] = useState<string>("");
     const [policySend, setPolicySend] = useState<boolean>(false);
     const [policyShare, setPolicyShare] = useState<boolean>(false);
@@ -48,7 +57,7 @@ export default function SignUpNameScreen(): JSX.Element {
             name: name,
         });
 
-        console.log(body);
+        console.log(`Creating user with body: ${body}`);
 
         try {
             setErrorAndColor("Please wait...", "white");
