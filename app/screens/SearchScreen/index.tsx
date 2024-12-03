@@ -8,6 +8,7 @@ import { COLORS } from "../../constants/color";
 import { FontSizeConstants } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
+import { scale, verticalScale } from "../../utils/Scale";
 
 const data = [
     {
@@ -101,14 +102,14 @@ export default function SearchScreen(): JSX.Element {
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
                 <Stack
-                    width={vw(85)}
+                    columnGap={scale(30)}
                     justifyContent={"space-between"}
                     alignItems={"center"}
                     flexDirection={"row"}
                 >
                     <SearchTextInput
-                        width={vw(65)}
-                        height={vh(5.5)}
+                        width={vw(70)}
+                        height={verticalScale(30)}
                         image={IMAGE_RESOURCE.search.iconSearchBlack}
                         backgroundColor={COLORS.primaryReverse.background}
                         placeholder="Search"
@@ -117,10 +118,8 @@ export default function SearchScreen(): JSX.Element {
                         textSize={FontSizeConstants.md}
                     />
                     <Stack
-                        width={vw(15)}
-                        height={vh(5.5)}
-                        justifyContent={"center"}
-                        alignItems={"center"}
+                        justifyContent="center"
+                        alignItems="center"
                         onPress={() => {}}
                     >
                         <Text value="Cancel" color={COLORS.primary.text} />
