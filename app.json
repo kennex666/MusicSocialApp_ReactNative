@@ -18,14 +18,20 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.kennex666.IUHMusicApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      ["expo-font", 
-      { "fonts": ["assets/fonts/AvenirNextLTPro-Regular.otf"] } 
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "assets/fonts/AvenirNextLTPro-Regular.otf"
+          ]
+        }
       ]
     ]
   }
