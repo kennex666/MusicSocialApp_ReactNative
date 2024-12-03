@@ -6,4 +6,6 @@ export const SCREEN_NAME = {
     LOGIN: 'Login',
     REGISTER: 'Register',
     TESTING: 'Testing',
+    LIBRARY: 'Library',
+    SEARCH: 'Search',
 }
