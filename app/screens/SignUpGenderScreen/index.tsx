@@ -17,9 +17,29 @@ export default function SignUpGenderScreen(): JSX.Element {
     const navigation = useNavigation();
     const route = useRoute();
     const [gender, setGender] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [errorColor, setErrorColor] = useState<string>("");
+    const setErrorAndColor = (message: string, color: string) => {
+        setError(message);
+        setErrorColor(color);
+    }
+
+    const genderRegex = /^(male|female|other)$/i;
 
     const back = () => {navigation.goBack();}
-    const signUpName = () => {navigation.navigate(SCREEN_NAME.SIGNUP_NAME, {email: route.params.email, password: route.params.password, gender})}
+    const signUpName = () => {
+        if (gender === "") {
+            setErrorAndColor("Gender is required", "red");
+            return;
+        }
+
+        if (!genderRegex.test(gender)) {
+            setErrorAndColor("Gender must be either Male/Female/Other", "red");
+            return;
+        }
+
+        navigation.navigate(SCREEN_NAME.SIGNUP_NAME, {email: route.params.email, password: route.params.password, gender})
+    }
 
     return (
         <SafeAreaProvider>
@@ -69,6 +89,15 @@ export default function SignUpGenderScreen(): JSX.Element {
                     alignItems={"center"}
                 >
                     <NextButton onPress={signUpName} />
+                </Stack>
+                <Stack
+                    width={vw(85)}
+                    height={vh(10)}
+                    flexDirection={"column"}
+                    justifyContent={"space-evenly"}
+                    alignItems={"center"}
+                >
+                    <Text color={errorColor}>{error}</Text>
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>
