@@ -33,11 +33,9 @@ export default function LoginScreen(): JSX.Element {
         navigation.goBack();
     };
     const login = async () => {
-        setErrorAndColor("Please wait...", "white");
-
         try {
-            const response = await fetch(
-                "https://674f2f37bb559617b26e60fd.mockapi.io/users",
+            setErrorAndColor("Please wait...", "white");
+            const response = await fetch("https://674f2f37bb559617b26e60fd.mockapi.io/users", 
                 {
                     method: "GET",
                     headers: {
@@ -51,22 +49,18 @@ export default function LoginScreen(): JSX.Element {
             }
 
             const data = await response.json();
-
-            const user = data.find(
-                (user: any) =>
-                    user.email === email && user.password === password
-            );
+            const user = data.find((user: any) => user.email === email && user.password === password);
 
             if (!user) {
                 setErrorAndColor("Email or password is incorrect.", "red");
                 return;
             }
             
-            setErrorAndColor("Login successful.", "green");
             navigation.navigate(SCREEN_NAME.HOME);
         } catch (error) {
-            console.log(error);
             setErrorAndColor("An error occurred. Please try again later.", "red");
+            console.log(error);
+            return;
         }
     };
     return (

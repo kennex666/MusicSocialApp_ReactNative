@@ -19,9 +19,58 @@ import { useState } from "react";
 export default function SignUpEmailScreen(): JSX.Element {
     const navigation = useNavigation();
     const [email, setEmail] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [errorColor, setErrorColor] = useState<string>("");
+    const setErrorAndColor = (message: string, color: string) => {
+        setError(message);
+        setErrorColor(color);
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const back = () => {navigation.goBack();}
-    const signUpPassword = () => {navigation.navigate(SCREEN_NAME.SIGNUP_PASSWORD, { email })}
+    const signUpPassword = async () => {
+        if (email === "") {
+            setErrorAndColor("Email is required", "red");
+            return;
+        }
+
+        if (!emailRegex.test(email)) {
+            setErrorAndColor("Invalid email. Please try again", "red");
+            return;
+        }
+
+        try {
+            setErrorAndColor("Please wait...", "white");
+            const response = await fetch("https://674f2f37bb559617b26e60fd.mockapi.io/users", 
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+            const user = data.find((user: any) => user.email === email);
+
+            if (user) {
+                setErrorAndColor("Email is already in use. Please try another email.", "red");
+                return;
+            }
+
+            navigation.navigate(SCREEN_NAME.SIGNUP_PASSWORD, { email })
+        } catch (error) {
+            setErrorAndColor("An error occurred. Please try again later.", "red");
+            console.log(error);
+            return;
+        }
+
+    }
 
     return (
         <SafeAreaProvider>
@@ -71,6 +120,15 @@ export default function SignUpEmailScreen(): JSX.Element {
                     alignItems={"center"}
                 >
                     <NextButton onPress={signUpPassword} />
+                </Stack>
+                <Stack
+                    width={vw(85)}
+                    height={vh(10)}
+                    flexDirection={"column"}
+                    justifyContent={"space-evenly"}
+                    alignItems={"center"}
+                >
+                    <Text color={errorColor}>{error}</Text>
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>
