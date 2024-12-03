@@ -17,9 +17,30 @@ export default function SignUpPasswordScreen(): JSX.Element {
     const navigation = useNavigation();
     const route = useRoute();
     const [password, setPassword] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [errorColor, setErrorColor] = useState<string>("");
+    const setErrorAndColor = (message: string, color: string) => {
+        setError(message);
+        setErrorColor(color);
+    }
+
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
     const back = () => {navigation.goBack();}
-    const signUpGender = () => {navigation.navigate(SCREEN_NAME.SIGNUP_GENDER, { email: route.params.email, password })}
+    const signUpGender = () => {
+        if (password === "") {
+            setErrorAndColor("Password is required", "red");
+            return;
+        }
+
+        if (!passwordRegex.test(password)) {
+            setErrorAndColor("Password must contain at least 8 characters, including 1 letter and 1 number", "red");
+            return;
+        }
+
+        setErrorAndColor("", "transparent");
+        navigation.navigate(SCREEN_NAME.SIGNUP_GENDER, { email: route.params.email, password })
+    }
 
     return (
         <SafeAreaProvider>
@@ -69,6 +90,15 @@ export default function SignUpPasswordScreen(): JSX.Element {
                     alignItems={"center"}
                 >
                     <NextButton onPress={signUpGender} />
+                </Stack>
+                <Stack
+                    width={vw(85)}
+                    height={vh(10)}
+                    flexDirection={"column"}
+                    justifyContent={"space-evenly"}
+                    alignItems={"center"}
+                >
+                    <Text color={errorColor}>{error}</Text>
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>
