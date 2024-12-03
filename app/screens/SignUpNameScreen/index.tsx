@@ -25,12 +25,26 @@ export default function SignUpNameScreen(): JSX.Element {
     const navigation = useNavigation();
     const route = useRoute();
     const [name, setName] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [errorColor, setErrorColor] = useState<string>("");
+    const setErrorAndColor = (message: string, color: string) => {
+        setError(message);
+        setErrorColor(color);
+    }
 
     const user = route.params;
 
     const back = () => {navigation.goBack()};
 
     const createUser = async () => {
+        console.log(policySend);
+        console.log(policyShare);
+
+        if (name === "") {
+            setErrorAndColor("Name is required", "red");
+            return;
+        }
+
         const body = JSON.stringify({
             email: user.email,
             password: user.password,
@@ -41,6 +55,7 @@ export default function SignUpNameScreen(): JSX.Element {
         console.log(body);
 
         try {
+            setErrorAndColor("Please wait...", "white");
             const response = await fetch('https://674f2f37bb559617b26e60fd.mockapi.io/users', {
                 method: 'POST',
                 headers: {
@@ -53,10 +68,12 @@ export default function SignUpNameScreen(): JSX.Element {
                 throw new Error('Network response was not ok');
             }
 
+            setErrorAndColor("", "transparent");
             navigation.navigate(SCREEN_NAME.HOME);
         } catch (error) {
+            setErrorAndColor("An error occurred", "red");
             console.log(error);
-            navigation.navigate(SCREEN_NAME.START);
+            return;
         }
     }
 
@@ -173,7 +190,16 @@ export default function SignUpNameScreen(): JSX.Element {
                 </Stack>
                 <Stack
                     width={vw(85)}
-                    height={vh(25)}
+                    height={vh(10)}
+                    flexDirection={"column"}
+                    justifyContent={"flex-end"}
+                    alignItems={"center"}
+                >
+                    <Text color={errorColor}>{error}</Text>
+                </Stack>
+                <Stack
+                    width={vw(85)}
+                    height={vh(15)}
                     justifyContent={"flex-end"}
                     alignItems={"center"}
                 >

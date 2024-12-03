@@ -38,6 +38,7 @@ export default function SignUpGenderScreen(): JSX.Element {
             return;
         }
 
+        setErrorAndColor("", "transparent");
         navigation.navigate(SCREEN_NAME.SIGNUP_NAME, {email: route.params.email, password: route.params.password, gender})
     }
 
