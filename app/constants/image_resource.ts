@@ -47,5 +47,28 @@ export const IMAGE_RESOURCE = {
   },
   signUp: {
     iconBack: require("../../assets/images/signUp/icon_back.png"),
+    check: {
+      active: require("../../assets/images/signUp/icon_check.png"),
+      inactive: require("../../assets/images/signUp/icon_uncheck.png"),
+    }
   },
+  search: {
+    iconSearchBlack: require("../../assets/images/search/icon_search_black.png"),
+    iconSearchWhite: require("../../assets/images/search/icon_search_white.png"),
+  },
+  album: {
+    iconBack: require("../../assets/images/album/icon_back.png"),
+    iconSpotify: require("../../assets/images/album/icon_spotify.png"),
+  },
+  albumControl: {
+    iconLike: require("../../assets/images/albumControl/icon_like.png"),
+    iconArtist: require("../../assets/images/albumControl/icon_artist.png"),
+    iconShare: require("../../assets/images/albumControl/icon_share.png"),
+    iconAdd: require("../../assets/images/albumControl/icon_add.png"),
+    iconQueue: require("../../assets/images/albumControl/icon_queue.png"),
+    iconRadio: require("../../assets/images/albumControl/icon_radio.png"),
+  },
+  setting: {
+    iconForward: require("../../assets/images/setting/icon_forward.png"),
+  }
 };

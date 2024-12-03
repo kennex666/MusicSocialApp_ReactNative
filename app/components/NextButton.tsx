@@ -19,10 +19,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: vh(5) / 2,
-        backgroundColor: COLORS.tertiary.background,
+        backgroundColor: COLORS.tertiary.text,
     },
     text: {
         color: COLORS.primaryReverse.text,
         fontSize: FontSizeConstants.nm,
+        fontWeight: "bold",
     },
 });

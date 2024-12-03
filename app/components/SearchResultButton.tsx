@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
+        marginBottom: vh(2),
     },
     imageView: {
         width: "20%",
