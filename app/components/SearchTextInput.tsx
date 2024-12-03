@@ -4,7 +4,7 @@ import Stack from "./Stack";
 export default function SearchTextInput(props: any): JSX.Element {
     const {
         width,
-        height,
+        height = 50,
         image,
         backgroundColor,
         placeholder,
