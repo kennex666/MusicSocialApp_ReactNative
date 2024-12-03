@@ -29,9 +29,7 @@ export default function LoginScreen(): JSX.Element {
         setErrorColor(color);
     }
 
-    const back = () => {
-        navigation.goBack();
-    };
+    const back = () => {navigation.goBack();};
     const login = async () => {
         try {
             setErrorAndColor("Please wait...", "white");
@@ -56,6 +54,7 @@ export default function LoginScreen(): JSX.Element {
                 return;
             }
             
+            setErrorAndColor("", "transparent");
             navigation.navigate(SCREEN_NAME.HOME);
         } catch (error) {
             setErrorAndColor("An error occurred. Please try again later.", "red");

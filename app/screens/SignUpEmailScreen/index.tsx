@@ -63,6 +63,7 @@ export default function SignUpEmailScreen(): JSX.Element {
                 return;
             }
 
+            setErrorAndColor("", "transparent");
             navigation.navigate(SCREEN_NAME.SIGNUP_PASSWORD, { email })
         } catch (error) {
             setErrorAndColor("An error occurred. Please try again later.", "red");
