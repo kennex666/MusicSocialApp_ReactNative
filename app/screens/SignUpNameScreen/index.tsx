@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         height: vh(6),
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: vh(6) / 2,
+        // borderRadius: vh(6) / 2,
         backgroundColor: COLORS.primaryReverse.background,
     },
     createText: {
