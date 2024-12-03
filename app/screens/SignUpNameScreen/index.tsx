@@ -16,15 +16,12 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { SCREEN_NAME } from "../../constants/screen";
 import { useState } from "react";
 
-const handlers = {
-    onPressPolicySend: ({ active, setActive }: any) => {},
-    onPressPolicyShare: ({ active, setActive }: any) => {},
-};
-
 export default function SignUpNameScreen(): JSX.Element {
     const navigation = useNavigation();
     const route = useRoute();
     const [name, setName] = useState<string>("");
+    const [policySend, setPolicySend] = useState<boolean>(false);
+    const [policyShare, setPolicyShare] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
     const [errorColor, setErrorColor] = useState<string>("");
     const setErrorAndColor = (message: string, color: string) => {
@@ -35,11 +32,10 @@ export default function SignUpNameScreen(): JSX.Element {
     const user = route.params;
 
     const back = () => {navigation.goBack()};
+    const onPressPolicySend = () => {setPolicySend(!policySend);}
+    const onPressPolicyShare = () => {setPolicyShare(!policyShare);}
 
     const createUser = async () => {
-        console.log(policySend);
-        console.log(policyShare);
-
         if (name === "") {
             setErrorAndColor("Name is required", "red");
             return;
@@ -165,7 +161,7 @@ export default function SignUpNameScreen(): JSX.Element {
                             size={ButtonImageSizeContants.sm}
                             style={styles.checkButton}
                             isControllActive={false}
-                            onPress={handlers.onPressPolicySend}
+                            onPress={onPressPolicySend}
                         />
                     </Stack>
                     <Stack
@@ -184,7 +180,7 @@ export default function SignUpNameScreen(): JSX.Element {
                             size={ButtonImageSizeContants.sm}
                             style={styles.checkButton}
                             isControllActive={false}
-                            onPress={handlers.onPressPolicyShare}
+                            onPress={onPressPolicyShare}
                         />
                     </Stack>
                 </Stack>
