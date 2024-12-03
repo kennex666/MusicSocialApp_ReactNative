@@ -16,6 +16,7 @@ export default function StartScreen(): JSX.Element {
     const navigation = useNavigation();
 
     const signUpEmail = () => {navigation.navigate(SCREEN_NAME.SIGNUP_EMAIL);}
+    const login = () => {navigation.navigate(SCREEN_NAME.LOGIN)}
 
     return (
         <SafeAreaProvider>
@@ -65,6 +66,7 @@ export default function StartScreen(): JSX.Element {
                         text={"Log in"}
                         buttonStyle={styles.loginButton}
                         textStyle={styles.loginText}
+                        onPress={login}
                     />
                 </Stack>
             </SafeAreaView>
