@@ -24,13 +24,16 @@ export default function LoginScreen(): JSX.Element {
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [errorColor, setErrorColor] = useState<string>("");
+    const setErrorAndColor = (message: string, color: string) => {
+        setError(message);
+        setErrorColor(color);
+    }
 
     const back = () => {
         navigation.goBack();
     };
     const login = async () => {
-        setError("Please wait...");
-        setErrorColor("white");
+        setErrorAndColor("Please wait...", "white");
 
         try {
             const response = await fetch(
@@ -55,18 +58,15 @@ export default function LoginScreen(): JSX.Element {
             );
 
             if (!user) {
-                setError("Email or password is incorrect.");
-                setErrorColor("red");
+                setErrorAndColor("Email or password is incorrect.", "red");
                 return;
             }
             
-            setError("Login successful.");
-            setErrorColor("green");
+            setErrorAndColor("Login successful.", "green");
             navigation.navigate(SCREEN_NAME.HOME);
         } catch (error) {
             console.log(error);
-            setError("An error occurred. Please try again later.");
-            setErrorColor("red");
+            setErrorAndColor("An error occurred. Please try again later.", "red");
         }
     };
     return (
