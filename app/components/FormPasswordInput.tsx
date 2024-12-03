@@ -4,7 +4,8 @@ import { COLORS } from "../constants/color";
 import { FontSizeConstants } from "../constants/font-size";
 
 export default function FormPasswordInput(props: any): JSX.Element {
-    return <TextInput style={styles.textInput} secureTextEntry />;
+    const onChangeText = props.onChangeText;
+    return <TextInput style={styles.textInput} secureTextEntry onChangeText={onChangeText} />;
 };
 
 const styles = StyleSheet.create({

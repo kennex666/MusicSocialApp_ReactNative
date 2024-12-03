@@ -9,11 +9,15 @@ import { ButtonImageSizeContants, FontSizeConstants } from "../../constants/font
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
 import FormPasswordInput from "../../components/FormPasswordInput";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { SCREEN_NAME } from "../../constants/screen";
+import { useState } from "react";
 
 export default function SignUpPasswordScreen(): JSX.Element {
     const navigation = useNavigation();
+    const route = useRoute();
+
+    const [password, setPassword] = useState<string>("");
 
     return (
         <SafeAreaProvider>
@@ -48,7 +52,7 @@ export default function SignUpPasswordScreen(): JSX.Element {
                         bold={true}
                         value="Create a password"
                     />
-                    <FormPasswordInput />
+                    <FormPasswordInput onChangeText={setPassword} />
                     <Text
                         size={FontSizeConstants.xs}
                         color={COLORS.primary.text}
@@ -62,7 +66,7 @@ export default function SignUpPasswordScreen(): JSX.Element {
                     justifyContent={"center"}
                     alignItems={"center"}
                 >
-                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_GENDER)} />
+                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_GENDER, { email: route.params.email, password })} />
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>

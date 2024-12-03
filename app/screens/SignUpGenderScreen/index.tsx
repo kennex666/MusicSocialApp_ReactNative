@@ -9,11 +9,15 @@ import { COLORS } from "../../constants/color";
 import { ButtonImageSizeContants, FontSizeConstants } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { SCREEN_NAME } from "../../constants/screen";
+import { useState } from "react";
 
 export default function SignUpGenderScreen(): JSX.Element {
     const navigation = useNavigation();
+    const route = useRoute();
+
+    const [gender, setGender] = useState<string>("");
 
     return (
         <SafeAreaProvider>
@@ -48,7 +52,7 @@ export default function SignUpGenderScreen(): JSX.Element {
                         bold={true}
                         value="What's your gender?"
                     />
-                    <FormTextInput />
+                    <FormTextInput onChangeText={setGender} />
                     <Text
                         size={FontSizeConstants.xs}
                         color={COLORS.primary.text}
@@ -62,7 +66,7 @@ export default function SignUpGenderScreen(): JSX.Element {
                     justifyContent={"center"}
                     alignItems={"center"}
                 >
-                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_NAME)} />
+                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_NAME, {email: route.params.email, password: route.params.password, gender})} />
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>

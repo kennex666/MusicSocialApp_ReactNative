@@ -12,8 +12,9 @@ import {
 } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { SCREEN_NAME } from "../../constants/screen";
+import { useState } from "react";
 
 const handlers = {
     onPressPolicySend: ({ active, setActive }: any) => {},
@@ -22,6 +23,40 @@ const handlers = {
 
 export default function SignUpNameScreen(): JSX.Element {
     const navigation = useNavigation();
+    const route = useRoute();
+
+    const [name, setName] = useState<string>("");
+    const user = route.params;
+
+    const createUser = async () => {
+        const body = JSON.stringify({
+            email: user.email,
+            password: user.password,
+            gender: user.gender,
+            name: name,
+        });
+
+        console.log(body);
+
+        try {
+            const response = await fetch('https://674f2f37bb559617b26e60fd.mockapi.io/users', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: body,
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            navigation.navigate(SCREEN_NAME.HOME);
+        } catch (error) {
+            console.log(error);
+            navigation.navigate(SCREEN_NAME.START);
+        }
+    }
 
     return (
         <SafeAreaProvider>
@@ -56,7 +91,7 @@ export default function SignUpNameScreen(): JSX.Element {
                         bold={true}
                         value="What's your name?"
                     />
-                    <FormTextInput />
+                    <FormTextInput onChangeText={setName} />
                     <Text
                         size={FontSizeConstants.xs}
                         color={COLORS.primary.text}
@@ -145,7 +180,7 @@ export default function SignUpNameScreen(): JSX.Element {
                         buttonStyle={styles.createButton}
                         textStyle={styles.createText}
                         onPress={() => {
-                            navigation.navigate(SCREEN_NAME.HOME);
+                            createUser();
                         }}
                     />
                 </Stack>

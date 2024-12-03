@@ -14,9 +14,11 @@ import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
 import { useNavigation } from "@react-navigation/native";
 import { SCREEN_NAME } from "../../constants/screen";
+import { useState } from "react";
 
 export default function SignUpEmailScreen(): JSX.Element {
     const navigation = useNavigation();
+    const [email, setEmail] = useState<string>("");
 
     return (
         <SafeAreaProvider>
@@ -51,7 +53,7 @@ export default function SignUpEmailScreen(): JSX.Element {
                         bold={true}
                         value="What's your email?"
                     />
-                    <FormTextInput />
+                    <FormTextInput value={email} onChangeText={setEmail} />
                     <Text
                         size={FontSizeConstants.xs}
                         color={COLORS.primary.text}
@@ -65,7 +67,7 @@ export default function SignUpEmailScreen(): JSX.Element {
                     justifyContent={"center"}
                     alignItems={"center"}
                 >
-                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_PASSWORD)} />
+                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_PASSWORD, { email })} />
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>

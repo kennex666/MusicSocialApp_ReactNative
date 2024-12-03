@@ -4,7 +4,8 @@ import { COLORS } from "../constants/color";
 import { FontSizeConstants } from "../constants/font-size";
 
 export default function FormTextInput(props: any): JSX.Element {
-    return <TextInput style={styles.textInput} />;
+    const onChangeText = props.onChangeText;
+    return <TextInput style={styles.textInput} onChangeText={onChangeText} />;
 };
 
 const styles = StyleSheet.create({
