@@ -24,9 +24,11 @@ const handlers = {
 export default function SignUpNameScreen(): JSX.Element {
     const navigation = useNavigation();
     const route = useRoute();
-
     const [name, setName] = useState<string>("");
+
     const user = route.params;
+
+    const back = () => {navigation.goBack()};
 
     const createUser = async () => {
         const body = JSON.stringify({
@@ -72,7 +74,7 @@ export default function SignUpNameScreen(): JSX.Element {
                         image={IMAGE_RESOURCE.signUp.iconBack}
                         size={ButtonImageSizeContants.xl}
                         style={styles.returnButton}
-                        onPress={() => {}}
+                        onPress={back}
                     />
                     <Stack width={"60%"}>
                         <Text
@@ -179,9 +181,7 @@ export default function SignUpNameScreen(): JSX.Element {
                         text="Create an account"
                         buttonStyle={styles.createButton}
                         textStyle={styles.createText}
-                        onPress={() => {
-                            createUser();
-                        }}
+                        onPress={createUser}
                     />
                 </Stack>
             </SafeAreaView>

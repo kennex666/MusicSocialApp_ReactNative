@@ -16,8 +16,10 @@ import { useState } from "react";
 export default function SignUpGenderScreen(): JSX.Element {
     const navigation = useNavigation();
     const route = useRoute();
-
     const [gender, setGender] = useState<string>("");
+
+    const back = () => {navigation.goBack();}
+    const signUpName = () => {navigation.navigate(SCREEN_NAME.SIGNUP_NAME, {email: route.params.email, password: route.params.password, gender})}
 
     return (
         <SafeAreaProvider>
@@ -33,7 +35,7 @@ export default function SignUpGenderScreen(): JSX.Element {
                         image={IMAGE_RESOURCE.signUp.iconBack}
                         size={ButtonImageSizeContants.xl}
                         style={styles.returnButton}
-                        onPress={() => {}}
+                        onPress={back}
                     />
                     <Stack width={"60%"}>
                         <Text
@@ -66,7 +68,7 @@ export default function SignUpGenderScreen(): JSX.Element {
                     justifyContent={"center"}
                     alignItems={"center"}
                 >
-                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_NAME, {email: route.params.email, password: route.params.password, gender})} />
+                    <NextButton onPress={signUpName} />
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>

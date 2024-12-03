@@ -15,6 +15,8 @@ import { useNavigation } from "@react-navigation/native";
 export default function StartScreen(): JSX.Element {
     const navigation = useNavigation();
 
+    const signUpEmail = () => {navigation.navigate(SCREEN_NAME.SIGNUP_EMAIL);}
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -46,7 +48,7 @@ export default function StartScreen(): JSX.Element {
                     alignItems="center"
                     rowGap={vh(1)}
                 >
-                    <SignUpButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_EMAIL)} />
+                    <SignUpButton onPress={signUpEmail} />
                     <ContinueLogInButton
                         text={"Continue with Google"}
                         image={IMAGE_RESOURCE.start.iconGoogle}

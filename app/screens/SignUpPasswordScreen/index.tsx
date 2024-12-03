@@ -16,8 +16,10 @@ import { useState } from "react";
 export default function SignUpPasswordScreen(): JSX.Element {
     const navigation = useNavigation();
     const route = useRoute();
-
     const [password, setPassword] = useState<string>("");
+
+    const back = () => {navigation.goBack();}
+    const signUpGender = () => {navigation.navigate(SCREEN_NAME.SIGNUP_GENDER, { email: route.params.email, password })}
 
     return (
         <SafeAreaProvider>
@@ -33,7 +35,7 @@ export default function SignUpPasswordScreen(): JSX.Element {
                         image={IMAGE_RESOURCE.signUp.iconBack}
                         size={ButtonImageSizeContants.xl}
                         style={styles.returnButton}
-                        onPress={() => {}}
+                        onPress={back}
                     />
                     <Stack width={"60%"}>
                         <Text
@@ -66,7 +68,7 @@ export default function SignUpPasswordScreen(): JSX.Element {
                     justifyContent={"center"}
                     alignItems={"center"}
                 >
-                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_GENDER, { email: route.params.email, password })} />
+                    <NextButton onPress={signUpGender} />
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>

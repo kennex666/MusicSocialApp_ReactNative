@@ -20,6 +20,9 @@ export default function SignUpEmailScreen(): JSX.Element {
     const navigation = useNavigation();
     const [email, setEmail] = useState<string>("");
 
+    const back = () => {navigation.goBack();}
+    const signUpPassword = () => {navigation.navigate(SCREEN_NAME.SIGNUP_PASSWORD, { email })}
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -34,7 +37,7 @@ export default function SignUpEmailScreen(): JSX.Element {
                         image={IMAGE_RESOURCE.signUp.iconBack}
                         size={ButtonImageSizeContants.xl}
                         style={styles.returnButton}
-                        onPress={() => {}}
+                        onPress={back}
                     />
                     <Stack width={"60%"}>
                         <Text
@@ -67,7 +70,7 @@ export default function SignUpEmailScreen(): JSX.Element {
                     justifyContent={"center"}
                     alignItems={"center"}
                 >
-                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_PASSWORD, { email })} />
+                    <NextButton onPress={signUpPassword} />
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>
