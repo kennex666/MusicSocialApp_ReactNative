@@ -18,6 +18,7 @@ interface ImageButtonProps {
   isControllActive?: boolean;
   style?: any;
   firstState?: boolean;
+  radius?: number
 }
 
 export default function ImageButton({
@@ -27,9 +28,11 @@ export default function ImageButton({
   isControllActive = false,
   style = {},
   firstState = false,
+  radius = 0,
   ...props
 }: ImageButtonProps): JSX.Element {
   const [active, setActive] = useState(firstState);
+
 
   return (
     <TouchableOpacity
@@ -40,14 +43,29 @@ export default function ImageButton({
       style={style}
       {...props}
     >
-      <Image
-        source={active ? image.active ?? image : image.inactive ?? image}
-        resizeMode="contain"
-        style={{
-          width: size,
-          height: size,
-        }}
-      />
+      {image && typeof image != "string" ? (
+        <Image
+          source={active ? image.active ?? image : image.inactive ?? image}
+          resizeMode="contain"
+          style={{
+            width: size,
+            height: size,
+          }}
+          borderRadius={radius}
+        />
+      ) : (
+        <Image
+          source={{
+            uri: image,
+          }}
+          resizeMode="contain"
+          style={{
+            width: size,
+            height: size,
+          }}
+          borderRadius={radius}
+        />
+      )}
     </TouchableOpacity>
   );
 }
