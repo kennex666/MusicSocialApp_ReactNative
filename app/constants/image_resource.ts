@@ -38,6 +38,9 @@ export const IMAGE_RESOURCE = {
     album: require("../../assets/images/static_resources/album-test.png"),
     testing: require("../../assets/icon.png"),
     testing2: require("../../assets/adaptive-icon.png"),
+    art: require("../../assets/images/static_resources/art-test.png"),
+    love: require("../../assets/images/static_resources/love.png"),
+    new: require("../../assets/images/static_resources/new.png"),
   },
   start: {
     background: require("../../assets/images/start/background.png"),
@@ -50,7 +53,7 @@ export const IMAGE_RESOURCE = {
     check: {
       active: require("../../assets/images/signUp/icon_check.png"),
       inactive: require("../../assets/images/signUp/icon_uncheck.png"),
-    }
+    },
   },
   search: {
     iconSearchBlack: require("../../assets/images/search/icon_search_black.png"),
@@ -70,5 +73,24 @@ export const IMAGE_RESOURCE = {
   },
   setting: {
     iconForward: require("../../assets/images/setting/icon_forward.png"),
-  }
+  },
+  button: {
+    settings: require("../../assets/images/setting/settings.png"),
+    home: {
+      active: require("../../assets/images/general/home_active.png"),
+      inactive: require("../../assets/images/general/home_inactive.png"),
+    },
+    search: {
+      active: require("../../assets/images/general/search_active.png"),
+      inactive: require("../../assets/images/general/search_inactive.png"),
+    },
+    library: {
+      active: require("../../assets/images/general/library_active.png"),
+      inactive: require("../../assets/images/general/library_inactive.png"),
+    },
+    plus: require("../../assets/images/general/btn-plus.png"),
+    twoarrow: require("../../assets/images/general/btn-2way.png"),
+    window: require("../../assets/images/general/btn-window.png"),
+    pinned: require("../../assets/images/general/pinned.png"),
+  },
 };
