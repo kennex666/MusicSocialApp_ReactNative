@@ -12,8 +12,12 @@ import {
 } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
+import { useNavigation } from "@react-navigation/native";
+import { SCREEN_NAME } from "../../constants/screen";
 
 export default function SignUpEmailScreen(): JSX.Element {
+    const navigation = useNavigation();
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -61,7 +65,7 @@ export default function SignUpEmailScreen(): JSX.Element {
                     justifyContent={"center"}
                     alignItems={"center"}
                 >
-                    <NextButton />
+                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_PASSWORD)} />
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>

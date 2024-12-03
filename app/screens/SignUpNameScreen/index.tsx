@@ -12,6 +12,8 @@ import {
 } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
+import { useNavigation } from "@react-navigation/native";
+import { SCREEN_NAME } from "../../constants/screen";
 
 const handlers = {
     onPressPolicySend: ({ active, setActive }: any) => {},
@@ -19,6 +21,8 @@ const handlers = {
 };
 
 export default function SignUpNameScreen(): JSX.Element {
+    const navigation = useNavigation();
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -140,6 +144,9 @@ export default function SignUpNameScreen(): JSX.Element {
                         text="Create an account"
                         buttonStyle={styles.createButton}
                         textStyle={styles.createText}
+                        onPress={() => {
+                            navigation.navigate(SCREEN_NAME.HOME);
+                        }}
                     />
                 </Stack>
             </SafeAreaView>

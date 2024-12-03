@@ -9,8 +9,12 @@ import { COLORS } from "../../constants/color";
 import { FontSizeConstants } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
+import { SCREEN_NAME } from "../../constants/screen";
+import { useNavigation } from "@react-navigation/native";
 
 export default function StartScreen(): JSX.Element {
+    const navigation = useNavigation();
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -42,7 +46,7 @@ export default function StartScreen(): JSX.Element {
                     alignItems="center"
                     rowGap={vh(1)}
                 >
-                    <SignUpButton />
+                    <SignUpButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_EMAIL)} />
                     <ContinueLogInButton
                         text={"Continue with Google"}
                         image={IMAGE_RESOURCE.start.iconGoogle}

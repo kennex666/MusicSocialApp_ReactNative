@@ -9,8 +9,12 @@ import { ButtonImageSizeContants, FontSizeConstants } from "../../constants/font
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
 import FormPasswordInput from "../../components/FormPasswordInput";
+import { useNavigation } from "@react-navigation/native";
+import { SCREEN_NAME } from "../../constants/screen";
 
 export default function SignUpPasswordScreen(): JSX.Element {
+    const navigation = useNavigation();
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -58,7 +62,7 @@ export default function SignUpPasswordScreen(): JSX.Element {
                     justifyContent={"center"}
                     alignItems={"center"}
                 >
-                    <NextButton />
+                    <NextButton onPress={() => navigation.navigate(SCREEN_NAME.SIGNUP_GENDER)} />
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>
