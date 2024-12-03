@@ -1,15 +1,63 @@
+import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { vh, vw } from "../../utils/ViewpointEmulator";
-import { COLORS } from "../../constants/color";
 import Text from "../../components/CText";
-import { FontSizeConstants } from "../../constants/font-size";
-import Stack from "../../components/Stack";
-import FormTextInput from "../../components/FormTextInput";
 import FormPasswordInput from "../../components/FormPasswordInput";
+import FormTextInput from "../../components/FormTextInput";
+import Stack from "../../components/Stack";
 import TextButton from "../../components/TextButton";
+import { COLORS } from "../../constants/color";
+import { FontSizeConstants } from "../../constants/font-size";
+import { SCREEN_NAME } from "../../constants/screen";
+import { vh, vw } from "../../utils/ViewpointEmulator";
 
 export default function LoginScreen(): JSX.Element {
+    const navigation = useNavigation();
+
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [error, setError] = useState<string>("");
+
+    const login = async () => {
+        const body = JSON.stringify({
+            email: email,
+            password: password,
+        });
+
+        try {
+            const response = await fetch(
+                "https://674f2f37bb559617b26e60fd.mockapi.io/users",
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+
+            const user = data.find(
+                (user: any) =>
+                    user.email === email && user.password === password
+            );
+
+            if (!user) {
+                setError("Email or password is incorrect.");
+                return;
+            }
+
+            navigation.navigate(SCREEN_NAME.HOME);
+        } catch (error) {
+            console.log(error);
+            setError("An error occurred. Please try again later.");
+        }
+    };
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -22,23 +70,39 @@ export default function LoginScreen(): JSX.Element {
                 >
                     <Text
                         size={FontSizeConstants.xxxl}
-                        color={COLORS.primary.text}
+                        color={COLORS.secondary.text}
                         bold={true}
                         textAlign="center"
                         value="Login"
                     />
-                    <FormTextInput />
-                    <FormPasswordInput />
+                    <FormTextInput
+                        placeholder={"Email"}
+                        onChangeText={setEmail}
+                    />
+                    <FormPasswordInput
+                        placeholder={"Password"}
+                        onChangeText={setPassword}
+                    />
                     <TextButton
                         text={"Log in"}
                         buttonStyle={styles.loginButton}
                         textStyle={styles.loginText}
+                        onPress={login}
                     />
+                    <Stack
+                        width={vw(85)}
+                        height={vh(10)}
+                        flexDirection={"column"}
+                        justifyContent={"space-evenly"}
+                        alignItems={"center"}
+                    >
+                        <Text color="red">{error}</Text>
+                    </Stack>
                 </Stack>
             </SafeAreaView>
         </SafeAreaProvider>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {

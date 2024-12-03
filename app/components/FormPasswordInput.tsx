@@ -5,7 +5,8 @@ import { FontSizeConstants } from "../constants/font-size";
 
 export default function FormPasswordInput(props: any): JSX.Element {
     const onChangeText = props.onChangeText;
-    return <TextInput style={styles.textInput} secureTextEntry onChangeText={onChangeText} />;
+    const placeholder = props.placeholder;
+    return <TextInput style={styles.textInput} secureTextEntry onChangeText={onChangeText} placeholder={placeholder} placeholderTextColor={COLORS.tertiary.text} />;
 };
 
 const styles = StyleSheet.create({
