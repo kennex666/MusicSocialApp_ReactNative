@@ -55,7 +55,7 @@ export default function LoginScreen(): JSX.Element {
             }
             
             setErrorAndColor("", "transparent");
-            navigation.navigate(SCREEN_NAME.HOME);
+            navigation.navigate(SCREEN_NAME.BOTTOM_TAB);
         } catch (error) {
             setErrorAndColor("An error occurred. Please try again later.", "red");
             console.log(error);

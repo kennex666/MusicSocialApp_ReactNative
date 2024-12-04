@@ -74,7 +74,7 @@ export default function SignUpNameScreen(): JSX.Element {
             }
 
             setErrorAndColor("", "transparent");
-            navigation.navigate(SCREEN_NAME.HOME);
+            navigation.navigate(SCREEN_NAME.BOTTOM_TAB);
         } catch (error) {
             setErrorAndColor("An error occurred", "red");
             console.log(error);
