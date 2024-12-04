@@ -3,10 +3,10 @@ import { vh, vw } from "../utils/ViewpointEmulator";
 import { COLORS } from "../constants/color";
 import { FontSizeConstants } from "../constants/font-size";
 
-export default function FormTextInput(props: any): JSX.Element {
+export default function FormPasswordInput(props: any): JSX.Element {
     const onChangeText = props.onChangeText;
     const placeholder = props.placeholder;
-    return <TextInput style={styles.textInput} onChangeText={onChangeText} placeholder={placeholder} placeholderTextColor={COLORS.tertiary.text} />;
+    return <TextInput style={styles.textInput} secureTextEntry onChangeText={onChangeText} placeholder={placeholder} placeholderTextColor={COLORS.tertiary.text} />;
 };
 
 const styles = StyleSheet.create({

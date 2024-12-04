@@ -12,13 +12,76 @@ import {
 } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { SCREEN_NAME } from "../../constants/screen";
+import { useState } from "react";
 
-const handlers = {
-    onPressPolicySend: ({ active, setActive }: any) => {},
-    onPressPolicyShare: ({ active, setActive }: any) => {},
+type userType = {
+    email: string;
+    password: string;
+    gender: string;
+    name: string;
 };
 
+type routeProps = RouteProp<{ params: userType }, "params">;
+
 export default function SignUpNameScreen(): JSX.Element {
+    const navigation = useNavigation();
+    const route = useRoute<routeProps>();
+    const [name, setName] = useState<string>("");
+    const [policySend, setPolicySend] = useState<boolean>(false);
+    const [policyShare, setPolicyShare] = useState<boolean>(false);
+    const [error, setError] = useState<string>("");
+    const [errorColor, setErrorColor] = useState<string>("");
+    const setErrorAndColor = (message: string, color: string) => {
+        setError(message);
+        setErrorColor(color);
+    }
+
+    const user = route.params;
+
+    const back = () => {navigation.goBack()};
+    const onPressPolicySend = () => {setPolicySend(!policySend);}
+    const onPressPolicyShare = () => {setPolicyShare(!policyShare);}
+
+    const createUser = async () => {
+        if (name === "") {
+            setErrorAndColor("Name is required", "red");
+            return;
+        }
+
+        const body = JSON.stringify({
+            email: user.email,
+            password: user.password,
+            gender: user.gender,
+            name: name,
+        });
+
+        console.log(`Creating user with body: ${body}`);
+
+        try {
+            setErrorAndColor("Please wait...", "white");
+            const response = await fetch('https://674f2f37bb559617b26e60fd.mockapi.io/users', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: body,
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            setErrorAndColor("", "transparent");
+            navigation.navigate(SCREEN_NAME.BOTTOM_TAB);
+        } catch (error) {
+            setErrorAndColor("An error occurred", "red");
+            console.log(error);
+            return;
+        }
+    }
+
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -33,7 +96,7 @@ export default function SignUpNameScreen(): JSX.Element {
                         image={IMAGE_RESOURCE.signUp.iconBack}
                         size={ButtonImageSizeContants.xl}
                         style={styles.returnButton}
-                        onPress={() => {}}
+                        onPress={back}
                     />
                     <Stack width={"60%"}>
                         <Text
@@ -52,7 +115,7 @@ export default function SignUpNameScreen(): JSX.Element {
                         bold={true}
                         value="What's your name?"
                     />
-                    <FormTextInput />
+                    <FormTextInput onChangeText={setName} />
                     <Text
                         size={FontSizeConstants.xs}
                         color={COLORS.primary.text}
@@ -107,7 +170,7 @@ export default function SignUpNameScreen(): JSX.Element {
                             size={ButtonImageSizeContants.sm}
                             style={styles.checkButton}
                             isControllActive={false}
-                            onPress={handlers.onPressPolicySend}
+                            onPress={onPressPolicySend}
                         />
                     </Stack>
                     <Stack
@@ -126,13 +189,22 @@ export default function SignUpNameScreen(): JSX.Element {
                             size={ButtonImageSizeContants.sm}
                             style={styles.checkButton}
                             isControllActive={false}
-                            onPress={handlers.onPressPolicyShare}
+                            onPress={onPressPolicyShare}
                         />
                     </Stack>
                 </Stack>
                 <Stack
                     width={vw(85)}
-                    height={vh(25)}
+                    height={vh(10)}
+                    flexDirection={"column"}
+                    justifyContent={"flex-end"}
+                    alignItems={"center"}
+                >
+                    <Text color={errorColor}>{error}</Text>
+                </Stack>
+                <Stack
+                    width={vw(85)}
+                    height={vh(15)}
                     justifyContent={"flex-end"}
                     alignItems={"center"}
                 >
@@ -140,6 +212,7 @@ export default function SignUpNameScreen(): JSX.Element {
                         text="Create an account"
                         buttonStyle={styles.createButton}
                         textStyle={styles.createText}
+                        onPress={createUser}
                     />
                 </Stack>
             </SafeAreaView>

@@ -175,16 +175,16 @@ export default function HomeScreen({ navigation }): JSX.Element {
           />
 
           <TitleAndImage
-            title="Your show"
-            data={madeForYou}
-            onPress={handleOnPress}
-          />
-
-          <TitleAndImage
             title="Top chart"
             data={topChart}
             onPress={handleOnPress}
           />
+
+          {/* <TitleAndImage
+            title="Your show"
+            data={madeForYou}
+            onPress={handleOnPress}
+          /> */}
         </Stack>
       </ScrollView>
 

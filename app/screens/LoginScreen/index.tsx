@@ -1,24 +1,27 @@
+import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Text from "../../components/CText";
+import FormPasswordInput from "../../components/FormPasswordInput";
 import FormTextInput from "../../components/FormTextInput";
-import ImageButton from "../../components/ImageButton";
-import NextButton from "../../components/NextButton";
 import Stack from "../../components/Stack";
+import TextButton from "../../components/TextButton";
 import { COLORS } from "../../constants/color";
 import {
     ButtonImageSizeContants,
     FontSizeConstants,
 } from "../../constants/font-size";
-import { IMAGE_RESOURCE } from "../../constants/image_resource";
-import { vh, vw } from "../../utils/ViewpointEmulator";
-import { useNavigation } from "@react-navigation/native";
 import { SCREEN_NAME } from "../../constants/screen";
-import { useState } from "react";
+import { vh, vw } from "../../utils/ViewpointEmulator";
+import ImageButton from "../../components/ImageButton";
+import { IMAGE_RESOURCE } from "../../constants/image_resource";
 
-export default function SignUpEmailScreen(): JSX.Element {
+export default function LoginScreen(): JSX.Element {
     const navigation = useNavigation();
+
     const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [errorColor, setErrorColor] = useState<string>("");
     const setErrorAndColor = (message: string, color: string) => {
@@ -26,20 +29,8 @@ export default function SignUpEmailScreen(): JSX.Element {
         setErrorColor(color);
     }
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    const back = () => {navigation.goBack();}
-    const signUpPassword = async () => {
-        if (email === "") {
-            setErrorAndColor("Email is required", "red");
-            return;
-        }
-
-        if (!emailRegex.test(email)) {
-            setErrorAndColor("Invalid email. Please try again", "red");
-            return;
-        }
-
+    const back = () => {navigation.goBack();};
+    const login = async () => {
         try {
             setErrorAndColor("Please wait...", "white");
             const response = await fetch("https://674f2f37bb559617b26e60fd.mockapi.io/users", 
@@ -56,23 +47,21 @@ export default function SignUpEmailScreen(): JSX.Element {
             }
 
             const data = await response.json();
-            const user = data.find((user: any) => user.email === email);
+            const user = data.find((user: any) => user.email === email && user.password === password);
 
-            if (user) {
-                setErrorAndColor("Email is already in use. Please try another email.", "red");
+            if (!user) {
+                setErrorAndColor("Email or password is incorrect.", "red");
                 return;
             }
-
+            
             setErrorAndColor("", "transparent");
-            navigation.navigate(SCREEN_NAME.SIGNUP_PASSWORD, { email })
+            navigation.navigate(SCREEN_NAME.BOTTOM_TAB);
         } catch (error) {
             setErrorAndColor("An error occurred. Please try again later.", "red");
             console.log(error);
             return;
         }
-
-    }
-
+    };
     return (
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
@@ -89,38 +78,35 @@ export default function SignUpEmailScreen(): JSX.Element {
                         style={styles.returnButton}
                         onPress={back}
                     />
-                    <Stack width={"60%"}>
-                        <Text
-                            size={FontSizeConstants.md}
-                            color={COLORS.primary.text}
-                            bold={true}
-                            textAlign="center"
-                            value="Create account"
-                        />
-                    </Stack>
-                </Stack>
-                <Stack width={vw(85)} height={vh(15)} gap={vh(0.5)}>
-                    <Text
-                        size={FontSizeConstants.lg}
-                        color={COLORS.primary.text}
-                        bold={true}
-                        value="What's your email?"
-                    />
-                    <FormTextInput value={email} onChangeText={setEmail} />
-                    <Text
-                        size={FontSizeConstants.xs}
-                        color={COLORS.primary.text}
-                        bold={true}
-                        value="You will need to confirm this email later."
-                    />
                 </Stack>
                 <Stack
                     width={vw(85)}
-                    height={vh(5)}
-                    justifyContent={"center"}
+                    height={vh(40)}
+                    flexDirection={"column"}
+                    justifyContent={"space-evenly"}
                     alignItems={"center"}
                 >
-                    <NextButton onPress={signUpPassword} />
+                    <Text
+                        size={FontSizeConstants.xxxl}
+                        color={COLORS.secondary.text}
+                        bold={true}
+                        textAlign="center"
+                        value="Login"
+                    />
+                    <FormTextInput
+                        placeholder={"Email"}
+                        onChangeText={setEmail}
+                    />
+                    <FormPasswordInput
+                        placeholder={"Password"}
+                        onChangeText={setPassword}
+                    />
+                    <TextButton
+                        text={"Log in"}
+                        buttonStyle={styles.loginButton}
+                        textStyle={styles.loginText}
+                        onPress={login}
+                    />
                 </Stack>
                 <Stack
                     width={vw(85)}
@@ -139,10 +125,21 @@ export default function SignUpEmailScreen(): JSX.Element {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: COLORS.primary.background,
         gap: vh(1),
+    },
+    loginButton: {
+        height: vh(6),
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    loginText: {
+        color: COLORS.primary.text,
+        textAlign: "center",
+        fontSize: FontSizeConstants.nm,
+        fontWeight: "bold",
     },
     returnButton: {
         width: "20%",
