@@ -7,20 +7,20 @@ export default function SearchResultButton(props: any): JSX.Element {
     const { image, title, subtitle, onPress } = props;
 
     return (
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-            <View style={styles.imageView}>
-                <Image 
-                    source={image} 
-                    style={styles.image}
-                    resizeMode="contain"
-                />
-            </View>
-            <View style={styles.textView}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.subtitle}>{subtitle}</Text>
-            </View>
-        </TouchableOpacity>
-    )
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+        <View style={styles.imageView}>
+          <Image
+            source={typeof image === "string" ? { uri: image } : image}
+            style={styles.image}
+            resizeMode="contain"
+          />
+        </View>
+        <View style={styles.textView}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.subtitle}>{subtitle}</Text>
+        </View>
+      </TouchableOpacity>
+    );
 };
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import { FlatList, Image, ScrollView, StyleSheet, View } from "react-native";
+import { Alert, FlatList, Image, ScrollView, StyleSheet, View } from "react-native";
 import CText from "../../components/CText";
 import { ButtonImageSizeContants, FontSizeConstants } from "../../constants/font-size";
 import { vh, vw } from "../../utils/ViewpointEmulator";
@@ -17,6 +17,7 @@ import { PlayerControl_Bottom } from '../../components/PlayerControl_Bottom';
 import PlayerControlComponent from "../../components/PlayerControl";
 import { useSound } from "../../redux/SoundContext";
 import { API_DOMAIN, API_PATH } from "../../constants/api_url";
+import { SCREEN_NAME } from "../../constants/screen";
 
 const madeForYou = [
   {
@@ -41,31 +42,95 @@ const madeForYou = [
   },
 ]
 
-export default function HomeScreen(): JSX.Element {
-    const dispatch = useDispatch();
-    const { music } = useSelector((state) => state.music);
-    const {
-      playSound,
-      pauseSound,
-      resumeSound,
-      stopSound,
-      isPlaying,
-      duration,
-      position,
-      soundInfo,
-      metadata,
-      setMetadata
-    } = useSound();
+export default function HomeScreen({ navigation }): JSX.Element {
+  const dispatch = useDispatch();
+  const { music } = useSelector((state) => state.music);
+  const [topChart, setTopChart] = useState([]);
+  const [topChartSong, setTopChartSong] = useState([]);
+  const [topRadio, setTopRadio] = useState([]);
+  const {
+    playSound,
+    pauseSound,
+    resumeSound,
+    stopSound,
+    isPlaying,
+    duration,
+    position,
+    soundInfo,
+    metadata,
+    setList,
+    setMetadata,
+  } = useSound();
 
-    const [topChart, setTopChart] = useState<any[]>([]);
+  const user = {
+    name: "Bảo",
+    image: "https://placeholder.com/50x50",
+  };
+  useEffect(() => {
+    console.log("fetching top chart");
+    fetch(API_DOMAIN.musicService + API_PATH.playlist.top_chart)
+      .then((res) => res.json())
+      .then((res) => {
+        setTopChart(res.data);
+      });
+  }, []);
 
-    useEffect(() => {
-      fetch(API_DOMAIN.musicService + API_PATH.playlist.top_chart)
-        .then((res) => res.json())
-        .then((data) => {
-          setTopChart(data);
-        });
-    }, []);
+  useEffect(() => {
+    console.log("fetching top song");
+    fetch(API_DOMAIN.musicService + API_PATH.playlist.top_chart_song)
+      .then((res) => res.json())
+      .then((res) => {
+        setTopChartSong(res.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log("fetching top radio");
+    fetch(API_DOMAIN.musicService + API_PATH.playlist.popular_radio)
+      .then((res) => res.json())
+      .then((res) => {
+        setTopRadio(res.data);
+      });
+  }, []);
+
+  const handleOnPress = async (data: any) => {
+     console.log(data);
+              if (data.type == "song") {
+                fetch(API_DOMAIN.musicService + API_PATH.song.detail + data.key)
+                  .then((res) => res.json())
+                  .then((res) => {
+                    console.log(res);
+                    if (!res.data.url) {
+                      Alert.alert(
+                        "Error",
+                        "API phản hồi: 503 - Vui lòng request chậm lại!"
+                      );
+                          playSound("https://dtbao.io.vn/audio/imhiding.mp3");
+                    } else playSound(res.data.url);
+                    
+                    setMetadata({
+                      title: data.name,
+                      artist: data.artist,
+                      image: data.image,
+                    });
+                  })
+                  .catch((err) => {
+                    Alert.alert(
+                      "Error",
+                      "API phản hồi: 503 - Vui lòng request chậm lại!"
+                    );
+                          playSound("https://dtbao.io.vn/audio/imhiding.mp3");
+                    console.log(err);
+                  });
+              } else {
+                if (data.type == "album") {
+                  // Ở màn hình trước, chuyển qua
+                    navigation.navigate(SCREEN_NAME.AlbumScreen, {
+                      data: data,
+                    });
+                }
+              }
+            }
 
   return (
     <Stack style={styles.container}>
@@ -79,11 +144,19 @@ export default function HomeScreen(): JSX.Element {
         >
           <Stack flexDirection="row" columnGap={scale(10)} alignItems="center">
             <ImageButton
-              image="https://placeholder.com/50x50"
+              image={
+                user && user?.image
+                  ? user?.image
+                  : "https://placeholder.com/50x50"
+              }
               size={ButtonImageSizeContants.lg}
               radius={9999}
             />
-            <Text value="Hi, Bao!" size="xl" bold />
+            <Text
+              value={`Hi, ${user & user?.name ? user?.name : "Bảo"}!`}
+              size="xl"
+              bold
+            />
           </Stack>
         </Stack>
 
@@ -91,24 +164,31 @@ export default function HomeScreen(): JSX.Element {
           {/* Recently play */}
           <TitleAndImage
             title="Made for you"
-            data={madeForYou}
-            onPress={async () => {
-              const sound = playSound("https://dtbao.io.vn/audio/imhiding.mp3");
-              setMetadata({
-                title: "Please tell me why",
-              });
-            }}
+            data={topChartSong}
+            onPress={handleOnPress}
           />
 
-          <TitleAndImage title="Popular radio" data={madeForYou} />
+          <TitleAndImage
+            title="Popular radio"
+            data={topRadio}
+            onPress={handleOnPress}
+          />
 
-          <TitleAndImage title="Your show" data={madeForYou} />
+          <TitleAndImage
+            title="Your show"
+            data={madeForYou}
+            onPress={handleOnPress}
+          />
 
-          <TitleAndImage title="Top chart" data={topChart} />
+          <TitleAndImage
+            title="Top chart"
+            data={topChart}
+            onPress={handleOnPress}
+          />
         </Stack>
       </ScrollView>
 
-      {isPlaying && (
+      {metadata?.title && (
         <Stack
           style={{
             position: "absolute",

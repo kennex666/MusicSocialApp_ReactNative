@@ -9,21 +9,6 @@ import { SCREEN_NAME } from "../constants/screen";
 import SearchScreen from "../screens/SearchScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 
-function SettingsScreen() {
-  return (
-    <View style={styles.screen}>
-      <Text>Settings Screen</Text>
-    </View>
-  );
-}
-
-function ProfileScreen() {
-  return (
-    <View style={styles.screen}>
-      <Text>Profile Screen</Text>
-    </View>
-  );
-}
 
 // Custom Tab Bar
 function MyTabBar({ state, descriptors, navigation }: any) {
@@ -92,9 +77,8 @@ function MyTabBar({ state, descriptors, navigation }: any) {
 
 const Tab = createBottomTabNavigator();
 
-export default function TabNavigator() {
+export default function TabNavigator({ navigation }: any) {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
@@ -136,7 +120,6 @@ export default function TabNavigator() {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }
 

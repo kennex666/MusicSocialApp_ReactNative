@@ -13,6 +13,7 @@ export default function DetailPlaylist({
   description = "",
   image = "https://placeholder.com/150x150",
   icon = null,
+  onPress = () => {},
 }) {
   return (
     <Stack
@@ -22,9 +23,10 @@ export default function DetailPlaylist({
       alignItems="center"
       width={"100%"}
       columnGap={scale(10)}
+      onPress={onPress}
     >
       <Image
-        source={image}
+        source={typeof image === "string" ? { uri: image } : image}
         style={{
           width: verticalScale(50),
           height: verticalScale(50),
@@ -34,9 +36,13 @@ export default function DetailPlaylist({
       />
 
       <Stack flexDirection="row" justifyContent="center">
-        <Stack justifyContent="center" rowGap={5} style={{
-          paddingBottom: verticalScale(3),
-        }}>
+        <Stack
+          justifyContent="center"
+          rowGap={5}
+          style={{
+            paddingBottom: verticalScale(3),
+          }}
+        >
           <Text value={title} />
 
           <Stack

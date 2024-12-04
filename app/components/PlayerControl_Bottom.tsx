@@ -40,7 +40,7 @@ export const PlayerControl_Bottom = () => {
         <View style={styles.firstContainer}>
           <View>
             <ImageButton
-              image={IMAGE_RESOURCE.static.album}
+              image={metadata?.image ?? IMAGE_RESOURCE.static.album}
               size={ButtonImageSizeContants.lg}
             />
           </View>

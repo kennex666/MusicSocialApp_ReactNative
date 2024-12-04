@@ -6,6 +6,7 @@ import React, {
   ReactNode,
 } from "react";
 import { Audio, AVPlaybackStatus } from "expo-av";
+import NextButton from '../components/NextButton';
 
 interface SoundContextType {
   playSound: (soundUri: string) => Promise<void>;
@@ -41,6 +42,8 @@ export const SoundProvider: React.FC<{ children: ReactNode }> = ({
   const [soundInfo, setSoundInfo] = useState<SoundInfo | null>(null);
   const [isLooping, setIsLooping] = useState(false);
   const [metadata, setMetadata] = useState<any>(null);
+  const [list, setList] = useState<any>([]);
+  const [curremtIndex, setCurrentIndex] = useState(0);
 
   const toggleLooping = () => {
     if (soundRef.current) {
@@ -55,6 +58,75 @@ export const SoundProvider: React.FC<{ children: ReactNode }> = ({
       setPositionState(newPosition); // Update position state
     }
   };
+
+  const NextButton = async () => {
+    if (soundRef.current) {
+      soundRef.current.setOnPlaybackStatusUpdate(null); // Clear listener
+      await soundRef.current.stopAsync();
+      await soundRef.current.unloadAsync();
+    }
+    try {
+      const soundUri = list[curremtIndex + 1] ?? list[0];
+      setCurrentIndex(list[curremtIndex + 1] ? curremtIndex + 1 : 0);
+      const { sound, status } = await Audio.Sound.createAsync(
+        { uri: soundUri ?? list[0] },
+        { shouldPlay: true }
+      );
+      soundRef.current = sound;
+      setDuration(status.durationMillis || 0);
+      setPositionState(status.positionMillis || 0);
+
+      sound.setOnPlaybackStatusUpdate((status: AVPlaybackStatus) => {
+        if (status.isLoaded) {
+          setIsPlaying(true);
+          setPositionState(status.positionMillis || 0);
+          setDuration(status.durationMillis || 0);
+        }
+      });
+
+      setSoundInfo({ uri: soundUri, duration: status.durationMillis || 0 });
+      
+      setMetadata(list[curremtIndex].metadata)
+      await sound.playAsync();
+    } catch (error) {
+      console.error("Error playing sound:", error);
+    }
+  }
+
+  const PreviousButton = async () => {
+    if (soundRef.current) {
+      soundRef.current.setOnPlaybackStatusUpdate(null); // Clear listener
+      await soundRef.current.stopAsync();
+      await soundRef.current.unloadAsync();
+    }
+    try {
+      const soundUri = list[curremtIndex - 1] ?? list[list.length - 1];
+      setCurrentIndex(
+        list[curremtIndex - 1] ? curremtIndex - 1 : list.length - 1
+      );
+      const { sound, status } = await Audio.Sound.createAsync(
+        { uri: soundUri ?? list[0] },
+        { shouldPlay: true }
+      );
+      soundRef.current = sound;
+      setDuration(status.durationMillis || 0);
+      setPositionState(status.positionMillis || 0);
+
+      sound.setOnPlaybackStatusUpdate((status: AVPlaybackStatus) => {
+        if (status.isLoaded) {
+          setIsPlaying(true);
+          setPositionState(status.positionMillis || 0);
+          setDuration(status.durationMillis || 0);
+        }
+      });
+
+      setSoundInfo({ uri: soundUri, duration: status.durationMillis || 0 });
+      setMetadata(list[curremtIndex].metadata);
+      await sound.playAsync();
+    } catch (error) {
+      console.error("Error playing sound:", error);
+    }
+  }
 
   const playSound = async (soundUri: string) => {
     if (soundRef.current) {
@@ -136,6 +208,9 @@ export const SoundProvider: React.FC<{ children: ReactNode }> = ({
         toggleLooping,
         metadata,
         setMetadata,
+        NextButton,
+        PreviousButton,
+        setList,
       }}
     >
       {children}

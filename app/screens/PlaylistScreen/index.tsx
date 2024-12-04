@@ -108,7 +108,7 @@ const handlers = {
 //     },
 // ];
 
-export default function AlbumScreen({
+export default function PlaylistScreen({
     route,
     navigation,
 }: any): JSX.Element {
@@ -127,6 +127,7 @@ export default function AlbumScreen({
     position,
     soundInfo,
     metadata,
+    setList,
     setMetadata,
   } = useSound();
 
@@ -240,36 +241,27 @@ export default function AlbumScreen({
                 <SearchResultButton
                   image={item.image}
                   title={item.name}
-                  subtitle={item.artists[0].name}
+                  subtitle={item.artist}
                   onPress={() => {
-                    fetch(
-                      API_DOMAIN.musicService + API_PATH.song.detail + data.key
-                    )
-                      .then((res) => res.json())
-                      .then((res) => {
-                        console.log(res);
-                        if (!res.data.url) {
+                        if (!item.url) {
                           Alert.alert(
                             "Error",
                             "API phản hồi: 503 - Vui lòng request chậm lại!"
                           );
                           playSound("https://dtbao.io.vn/audio/imhiding.mp3");
-                        } else playSound(res.data.url);
+                        } else playSound(item.url);
                         setMetadata({
                           title: data.name,
-                          artist: data.artists[0].name,
+                          artist: data.artist,
                           image: data.image,
                         });
-                      })
-                      .catch((err) => {
-                        Alert.alert(
-                          "Error",
-                          "API phản hồi: 503 - Vui lòng request chậm lại!"
-                        );
-                          playSound("https://dtbao.io.vn/audio/imhiding.mp3");
-                        console.log(err);
-                      });
-                  }}
+                        setList(
+                          data.map((item: any) => ({
+                          title: item.name,
+                          artist: item.artist,
+                          image: item.image,
+                        })));
+                    }}
                 />
               )}
               keyExtractor={(item) => item.id.toString()}

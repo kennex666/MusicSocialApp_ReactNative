@@ -6,8 +6,8 @@ import ImageButton from "../../components/ImageButton";
 import Stack from "../../components/Stack";
 import { COLORS } from "../../constants/color";
 import {
-    ButtonImageSizeContants,
-    FontSizeConstants,
+  ButtonImageSizeContants,
+  FontSizeConstants,
 } from "../../constants/font-size";
 import { IMAGE_RESOURCE } from "../../constants/image_resource";
 import { vh, vw } from "../../utils/ViewpointEmulator";
@@ -18,7 +18,7 @@ import { verticalScale } from "../../utils/Scale";
 import { PlayerControl_Bottom } from "../../components/PlayerControl_Bottom";
 
 const handlers = {
-    onPlay: ({ active, setActive }: any) => {},
+  onPlay: ({ active, setActive }: any) => {},
 };
 
 // const data = [
@@ -108,15 +108,10 @@ const handlers = {
 //     },
 // ];
 
-export default function AlbumScreen({
-    route,
-    navigation,
+export default function MediaPlayer({
+  route,
+  navigation,
 }: any): JSX.Element {
-    const {
-      data,
-    } = route.params || {};
-
-    
   const {
     playSound,
     pauseSound,
@@ -127,6 +122,7 @@ export default function AlbumScreen({
     position,
     soundInfo,
     metadata,
+    setList,
     setMetadata,
   } = useSound();
 
@@ -160,7 +156,11 @@ export default function AlbumScreen({
             alignItems={"center"}
           >
             <Image
-              source={typeof data.image === "string" ? { uri: data.image } : data.image}
+              source={
+                typeof data.image === "string"
+                  ? { uri: data.image }
+                  : data.image
+              }
               resizeMode="contain"
               style={{ width: "90%", height: "90%" }}
             />
@@ -240,35 +240,27 @@ export default function AlbumScreen({
                 <SearchResultButton
                   image={item.image}
                   title={item.name}
-                  subtitle={item.artists[0].name}
+                  subtitle={item.artist}
                   onPress={() => {
-                    fetch(
-                      API_DOMAIN.musicService + API_PATH.song.detail + data.key
-                    )
-                      .then((res) => res.json())
-                      .then((res) => {
-                        console.log(res);
-                        if (!res.data.url) {
-                          Alert.alert(
-                            "Error",
-                            "API phản hồi: 503 - Vui lòng request chậm lại!"
-                          );
-                          playSound("https://dtbao.io.vn/audio/imhiding.mp3");
-                        } else playSound(res.data.url);
-                        setMetadata({
-                          title: data.name,
-                          artist: data.artists[0].name,
-                          image: data.image,
-                        });
-                      })
-                      .catch((err) => {
-                        Alert.alert(
-                          "Error",
-                          "API phản hồi: 503 - Vui lòng request chậm lại!"
-                        );
-                          playSound("https://dtbao.io.vn/audio/imhiding.mp3");
-                        console.log(err);
-                      });
+                    if (!item.url) {
+                      Alert.alert(
+                        "Error",
+                        "API phản hồi: 503 - Vui lòng request chậm lại!"
+                      );
+                      playSound("https://dtbao.io.vn/audio/imhiding.mp3");
+                    } else playSound(item.url);
+                    setMetadata({
+                      title: data.name,
+                      artist: data.artist,
+                      image: data.image,
+                    });
+                    setList(
+                      data.map((item: any) => ({
+                        title: item.name,
+                        artist: item.artist,
+                        image: item.image,
+                      }))
+                    );
                   }}
                 />
               )}
@@ -296,12 +288,12 @@ export default function AlbumScreen({
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "flex-start",
-        alignItems: "center",
-        backgroundColor: COLORS.primary.background,
-        gap: vh(1),
-        paddingVertical: vh(2),
-    },
+  container: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: COLORS.primary.background,
+    gap: vh(1),
+    paddingVertical: vh(2),
+  },
 });

@@ -1,4 +1,4 @@
-import { FlatList, Image, ScrollView, StyleSheet, Touchable, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Image, ScrollView, StyleSheet, Touchable, TouchableOpacity, View } from "react-native";
 import CText from "../../components/CText";
 import { ButtonImageSizeContants, FontSizeConstants } from "../../constants/font-size";
 import { vw } from "../../utils/ViewpointEmulator";
@@ -12,29 +12,10 @@ import TitleAndImage from "../../components/TitleAndImage";
 import DetailSong from "../../components/DetailSong";
 import DetailSearch from "../../components/DetailSearch";
 import DetailPlaylist from "../../components/DetailPlaylist";
-
-const madeForYou = [
-  {
-    id: 1,
-    name: "Son tung MTP and 7UPPERCUTS - Hãy trao cho anh",
-    image: "https://placeholder.com/150x150",
-  },
-  {
-    id: 2,
-    name: "Album 2",
-    image: "https://placeholder.com/150x150",
-  },
-  {
-    id: 3,
-    name: "Album 3",
-    image: "https://placeholder.com/150x150",
-  },
-  {
-    id: 4,
-    name: "Album 4",
-    image: "https://placeholder.com/150x150",
-  },
-]
+import { useEffect, useState } from "react";
+import { API_DOMAIN, API_PATH } from "../../constants/api_url";
+import { useSound } from "../../redux/SoundContext";
+import { SCREEN_NAME } from "../../constants/screen";
 
 const listLibrary = [
   {
@@ -56,20 +37,6 @@ const listLibrary = [
 ]
 
 const recentlyPlay = [
-  {
-    id: 1,
-    title: "Liked Songs",
-    description: "Playlist",
-    image: IMAGE_RESOURCE.static.love,
-    icon: IMAGE_RESOURCE.button.pinned,
-  },
-  {
-    id: 2,
-    title: "New Episodes",
-    description: "Updated 2 days ago",
-    image: IMAGE_RESOURCE.static.new,
-    icon: IMAGE_RESOURCE.button.pinned,
-  },
   {
     id: 3,
     title: "Your heavy rotation",
@@ -107,7 +74,76 @@ const recentlyPlay = [
   }
 ];
 
-export default function LibraryScreen(): JSX.Element {
+export default function LibraryScreen({ navigation }): JSX.Element {
+  const [savedList, setSavedList] = useState([] as any);
+
+  const user = {
+    name: "Bảo",
+    image: "https://placeholder.com/50x50",
+  };
+
+  const listAlbumUser = [
+    {
+      id: "1",
+      name: "Dữ Liệu Quý (EP)",
+      artist: "Đen Vâu",
+      image:
+        "https://photo-resize-zmp3.zmdcdn.me/w165_r1x1_jpeg/cover/8/c/1/6/8c166e2b9a0e45ca9a6c7bef40a81f74.jpg",
+      url: "ZmJmykZgsGpNHddynyFnZmTLaVBDRHRRz",
+    },
+    {
+      id: "2",
+      name: "Dữ Liệu Quý (EP)",
+      artist: "Đen Vâu",
+      image:
+        "https://photo-resize-zmp3.zmdcdn.me/w165_r1x1_jpeg/cover/8/c/1/6/8c166e2b9a0e45ca9a6c7bef40a81f74.jpg",
+      url: "ZmJmykZgsGpNHddynyFnZmTLaVBDRHRRz",
+    },
+  ];
+
+  const {
+    playSound,
+    pauseSound,
+    resumeSound,
+    stopSound,
+    isPlaying,
+    duration,
+    position,
+    soundInfo,
+    metadata,
+    setMetadata,
+  } = useSound();
+
+  useEffect(() => {
+    fetch(API_DOMAIN.musicService + "/api_getsaved.php?id=" + 1)
+      .then((response) => response.json())
+      .then((json) =>
+        setSavedList([
+          {
+            id: 1,
+            title: "Liked Songs",
+            description: "Playlist",
+            image: IMAGE_RESOURCE.static.love,
+            icon: IMAGE_RESOURCE.button.pinned,
+          },
+          {
+            id: 2,
+            title: "New Episodes",
+            description: "Updated 2 days ago",
+            image: IMAGE_RESOURCE.static.new,
+            icon: IMAGE_RESOURCE.button.pinned,
+          },
+          ...json.data.map((item: any) => ({
+            id: item.id,
+            title: item.name,
+            description: item.artists[0].name,
+            image: item.image,
+            origin: item,
+          })),
+        ])
+      )
+      .catch((error) => console.error(error));
+  }, []);
   return (
     <Stack style={styles.container}>
       <Stack
@@ -119,7 +155,7 @@ export default function LibraryScreen(): JSX.Element {
       >
         <Stack flexDirection="row" columnGap={scale(10)} alignItems="center">
           <ImageButton
-            image="https://placeholder.com/50x50"
+            image={user && user?.image ? user?.image : "https://placeholder.com/50x50"}
             size={ButtonImageSizeContants.lg}
             radius={9999}
           />
@@ -193,11 +229,14 @@ export default function LibraryScreen(): JSX.Element {
         </Stack>
       </Stack>
 
-      <Stack flex={1} style={{
-        marginTop: verticalScale(10),
-      }}>
+      <Stack
+        flex={1}
+        style={{
+          marginTop: verticalScale(10),
+        }}
+      >
         <FlatList
-          data={recentlyPlay}
+          data={savedList}
           renderItem={({ item }) => (
             <DetailPlaylist
               title={item.title}
@@ -205,6 +244,12 @@ export default function LibraryScreen(): JSX.Element {
               icon={item.icon}
               image={item.image}
               radius={item.rounded ? 9999 : 0}
+              onPress={() => {
+                // Ở màn hình trước, chuyển qua
+                navigation.navigate(SCREEN_NAME.AlbumScreen, {
+                  data: item.origin,
+                });
+              }}
             />
           )}
           keyExtractor={(item) => item.id.toString()}

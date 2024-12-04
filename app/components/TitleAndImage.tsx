@@ -32,7 +32,7 @@ export default function TitleAndImage({title, data, onPress}: any): JSX.Element 
                   marginRight: scale(10),
                 }}
                 onPress={() => {
-                  onPress && onPress(item.id);
+                  onPress && onPress(item);
                 }}
               >
                 <Image
