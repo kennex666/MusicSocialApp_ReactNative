@@ -16,4 +16,5 @@ export const SCREEN_NAME = {
   SIGNUP_PASSWORD: 'SignUpPassword',
   SIGNUP_GENDER: 'SignUpGender',
   SIGNUP_NAME: 'SignUpName',
+  AI_CHAT: 'AIChat',
 };

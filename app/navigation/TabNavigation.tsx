@@ -8,6 +8,7 @@ import HomeScreen from "../screens/HomeScreen";
 import { SCREEN_NAME } from "../constants/screen";
 import SearchScreen from "../screens/SearchScreen";
 import LibraryScreen from "../screens/LibraryScreen";
+import AIChatScreen from "../screens/AIChatScreen";
 
 
 // Custom Tab Bar
@@ -117,6 +118,15 @@ export default function TabNavigator({ navigation }: any) {
             tabBarLabel: "Your Library",
             iconActive: IMAGE_RESOURCE.button.library.active,
             iconInactive: IMAGE_RESOURCE.button.library.inactive,
+          }}
+        />
+        <Tab.Screen
+          name={SCREEN_NAME.AI_CHAT}
+          component={AIChatScreen}
+          options={{
+            tabBarLabel: "Chat with AI",
+            iconActive: IMAGE_RESOURCE.albumControl.iconArtist,
+            iconInactive: IMAGE_RESOURCE.albumControl.iconArtist,
           }}
         />
       </Tab.Navigator>
