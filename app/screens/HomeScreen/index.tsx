@@ -16,6 +16,7 @@ import { playMusic } from "../../redux/musicSlice";
 import { PlayerControl_Bottom } from '../../components/PlayerControl_Bottom';
 import PlayerControlComponent from "../../components/PlayerControl";
 import { useSound } from "../../redux/SoundContext";
+import { API_DOMAIN, API_PATH } from "../../constants/api_url";
 
 const madeForYou = [
   {
@@ -56,11 +57,15 @@ export default function HomeScreen(): JSX.Element {
       setMetadata
     } = useSound();
 
+    const [topChart, setTopChart] = useState<any[]>([]);
+
     useEffect(() => {
-      if (music?.sound) {
-        
-      }
-    }, [isPlaying, music]);
+      fetch(API_DOMAIN.musicService + API_PATH.playlist.top_chart)
+        .then((res) => res.json())
+        .then((data) => {
+          setTopChart(data);
+        });
+    }, []);
 
   return (
     <Stack style={styles.container}>
@@ -92,14 +97,6 @@ export default function HomeScreen(): JSX.Element {
               setMetadata({
                 title: "Please tell me why",
               });
-              // const player = {
-              //   sound: sound,
-              //   duration: 100,
-              //   name: "I'm hiding",
-              // };
-              // if (!isPlaying) {
-              //   dispatch(playMusic({ player }));
-              // }
             }}
           />
 
@@ -107,25 +104,24 @@ export default function HomeScreen(): JSX.Element {
 
           <TitleAndImage title="Your show" data={madeForYou} />
 
-          <TitleAndImage title="Top chart" data={madeForYou} />
+          <TitleAndImage title="Top chart" data={topChart} />
         </Stack>
       </ScrollView>
 
-      {
-        isPlaying && (
-          <Stack
-        style={{
-          position: "absolute",
-          bottom: 0,
-          height: 100,
-          backgroundColor: COLORS.primary.background,
-          paddingHorizontal: vw(5),
-          paddingTop: verticalScale(10),
-        }}
-      >
-        <PlayerControl_Bottom />
-      </Stack>)
-      }
+      {isPlaying && (
+        <Stack
+          style={{
+            position: "absolute",
+            bottom: 0,
+            height: 100,
+            backgroundColor: COLORS.primary.background,
+            paddingHorizontal: vw(5),
+            paddingTop: verticalScale(10),
+          }}
+        >
+          <PlayerControl_Bottom />
+        </Stack>
+      )}
     </Stack>
   );
 }

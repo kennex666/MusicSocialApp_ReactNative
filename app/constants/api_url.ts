@@ -1,7 +1,7 @@
 export const API_DOMAIN = {
     //  Chưa implement nên để tạm
     'platform': 'https://mockupapi',
-    'musicService': 'https://musicService',
+    'musicService': 'http://192.168.31.229',
 }
 
 export const API_PATH = {
@@ -28,5 +28,6 @@ export const API_PATH = {
         'add': '/playlists/add',
         'delete': '/playlists/delete',
         'edit': '/playlists/edit',
+        'top_chart': '/api_album.php'
     }
 }
