@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { API_KEY, API_URL } from './config';
+import { COLORS } from '../../constants/color';
 
 const ChatScreen = () => {
   const [chatMessages, setChatMessages] = useState([
@@ -100,7 +101,7 @@ const ChatScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>My Kennen Assistant Lite Demo</Text>
+      <Text style={styles.header}>Chat with AI</Text>
       <ScrollView style={styles.chatContainer}>
         {chatMessages.map((msg) => (
           <View key={msg.id} style={styles.messageContainer}>
@@ -117,6 +118,7 @@ const ChatScreen = () => {
           placeholder="Type something to chat"
           value={inputMessage}
           onChangeText={setInputMessage}
+          placeholderTextColor={COLORS.secondary.text}
         />
         <Button title=">" onPress={handleSendMessage} />
       </View>
@@ -128,32 +130,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: "#333",
   },
   header: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center',
+    color: COLORS.secondary.text,
   },
   chatContainer: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: '#fff',
     marginBottom: 10,
+    backgroundColor: '#222',
     padding: 10,
+    borderRadius: 10,
   },
   messageContainer: {
     marginBottom: 10,
   },
   sender: {
     fontWeight: 'bold',
+    color: COLORS.secondary.text,
   },
   messageBubble: {
     marginTop: 5,
     padding: 10,
     borderWidth: 1,
-    borderColor: '#000',
+    borderColor: '#fff',
     backgroundColor: '#fff',
+    borderRadius: 10,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -161,11 +169,14 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    borderColor: '#000',
+    borderColor: '#fff',
     borderWidth: 1,
     marginRight: 10,
     paddingVertical: 10,
     paddingHorizontal: 15,
+    backgroundColor: '#222',
+    borderRadius: 10,
+    color: COLORS.primary.text,
   },
 });
 
