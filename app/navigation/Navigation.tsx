@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 const Navigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={SCREEN_NAME.PlaylistScreen}
+      initialRouteName={SCREEN_NAME.TESTING}
       screenOptions={{
         headerShown: false,
         // cardStyle: {
